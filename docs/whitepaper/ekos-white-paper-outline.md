@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Section 1 started
+Status: Draft outline with Sections 1-2 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -66,6 +66,10 @@ Topics:
 - Vector similarity is not business equivalence.
 - Tool calling executes actions, but execution does not imply understanding.
 - Agents coordinate tasks, but weak context produces weak decisions.
+
+Draft:
+
+- `docs/whitepaper/sections/02-why-retrieval-alone-is-not-enough.md`
 
 ### 3. Enterprise Meaning as Infrastructure
 Define the durable layer.
@@ -207,4 +211,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 2: "Why Retrieval Alone Is Not Enough."
+Draft Section 3: "Enterprise Meaning as Infrastructure."
