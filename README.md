@@ -6,18 +6,18 @@
 Build production-quality, open engineering projects that help AI understand enterprise systems.
 
 ## Vision
-Teaching AI to Understand Enterprise.
+Understanding Enterprise. Powering AI.
 
 ## North Star
-Create EKOS (Enterprise Knowledge Operating System): an ontology-first foundation connecting enterprise systems, AI agents, and knowledge.
+Create EKOS: enterprise intelligence infrastructure that turns business systems, processes, and evidence into a semantic foundation AI can reliably use.
 
 ## Guiding Principles
 - Enterprise First
-- Knowledge Before Prompts
-- Human-in-the-Loop
-- Explainability by Default
-- Open Architecture
-- Production Quality
+- Meaning Before Retrieval
+- Architecture Before Implementation
+- Evidence Before Confidence
+- Problems Before Solutions
+- Open, Reviewable Engineering
 
 ## Current Focus
 - EKOS
@@ -28,3 +28,19 @@ Create EKOS (Enterprise Knowledge Operating System): an ontology-first foundatio
 
 ## Roadmap
 This repository will become the project headquarters for architecture decisions, white papers, portfolio strategy, and weekly engineering reviews.
+
+## Operating Rule
+Chat is temporary. Git is persistent.
+
+Important ideas, decisions, and strategy changes must be recorded here so future sessions can continue from documented reasoning rather than memory.
+
+## Repository Map
+- `docs/adr/` - architecture decisions
+- `docs/diary/` - session memory and working history
+- `docs/research/` - working hypotheses and research notes
+- `docs/whitepaper/` - public-facing EKOS white paper drafts
+- `docs/methodology/` - collaboration and continuity rules
+- `docs/glossary/` - durable EKOS terminology
+- `docs/principles/` - North Star operating principles
+- `roadmap/` - execution plans
+- `reviews/` - GitHub and portfolio reviews
