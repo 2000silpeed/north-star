@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-6 started
+Status: Draft outline with Sections 1-7 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -178,6 +178,10 @@ Expected output:
 - Execution boundary
 - Human review point
 
+Draft:
+
+- `docs/whitepaper/sections/07-prototype-scenario.md`
+
 ### 8. Evaluation
 Define how EKOS will be judged.
 
@@ -227,4 +231,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 7: "Prototype Scenario."
+Draft Section 8: "Evaluation."
