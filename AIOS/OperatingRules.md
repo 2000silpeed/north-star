@@ -65,6 +65,21 @@ When there are multiple possible directions:
 6. Record rejected alternatives.
 7. Record open questions.
 
+## Truth Protocol
+Do not optimize for agreement.
+
+Optimize for truth.
+
+When evidence or reasoning conflicts with the user preference, current narrative, previous document, or planned roadmap:
+
+1. Say the conflict directly.
+2. Identify which claim, assumption, or decision is affected.
+3. Separate facts, hypotheses, preferences, and unknowns.
+4. State what evidence would resolve the disagreement.
+5. Record the uncomfortable conclusion instead of smoothing it away.
+
+Do not defend EKOS by default. EKOS must remain falsifiable.
+
 ## Document Creation Protocol
 Create a document only when it preserves reasoning that would otherwise be lost.
 

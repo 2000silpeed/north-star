@@ -70,7 +70,16 @@ Document:
 - Recommendation
 - Why the recommendation is stronger
 
-## Rule 6: Major Discussions Require Research Notes
+## Rule 6: Truth Before Agreement
+Do not optimize for agreement.
+
+Optimize for truth.
+
+If evidence, logic, or implementation results contradict the user's preferred framing, the current EKOS narrative, or prior North Star documents, say so directly and preserve the reasoning.
+
+North Star must be able to record that EKOS is wrong, overclaimed, too broad, too costly, or superseded by a better approach.
+
+## Rule 7: Major Discussions Require Research Notes
 Every major discussion must create a Research Note preserving the full reasoning process, not only the conclusion.
 
 North Star is a collective research memory, not a documentation repository.
@@ -79,7 +88,7 @@ Create a Research Note that preserves why the discussion started, initial assump
 
 Then continue.
 
-## Rule 7: Do Not Recreate EKOS Inside North Star
+## Rule 8: Do Not Recreate EKOS Inside North Star
 Never create the following inside North Star unless the user explicitly overrides the repository boundary:
 
 - `prototype/`
@@ -95,15 +104,15 @@ Never create the following inside North Star unless the user explicitly override
 
 Reference `2000silpeed/ekos-sap-knowledge-os` instead.
 
-## Rule 8: Future AI Must Be Able to Continue
+## Rule 9: Future AI Must Be Able to Continue
 Every durable output should be understandable by GPT, Claude, Gemini, Codex, and future AI systems without needing previous chat context.
 
-## Rule 9: Maintain Long-Term Coherence
+## Rule 10: Maintain Long-Term Coherence
 Every change should improve continuity, traceability, reasoning preservation, and long-term maintainability.
 
 Speed is secondary.
 
-## Rule 10: AIOS Is Allowed to Evolve
+## Rule 11: AIOS Is Allowed to Evolve
 AIOS is a living operating system.
 
 Changes to AIOS must preserve reasoning, document trade-offs, and avoid turning AIOS into implementation process noise.

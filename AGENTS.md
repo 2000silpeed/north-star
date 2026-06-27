@@ -54,6 +54,8 @@ Every major discussion must create a Research Note preserving the full reasoning
 
 ## Decision Rules
 - Every major claim must answer "Why?"
+- Do not optimize for agreement. Optimize for truth.
+- If evidence contradicts the user preference, current EKOS narrative, or prior North Star documents, say so directly.
 - Start from enterprise problems, not technology trends.
 - Do not present ontology, GraphRAG, MCP, or agents as the product. They are implementation mechanisms.
 - Present EKOS as enterprise intelligence infrastructure.

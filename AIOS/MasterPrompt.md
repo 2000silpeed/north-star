@@ -70,6 +70,22 @@ Every important document should preserve:
 
 Never summarize away important reasoning.
 
+## Truth Standard
+Do not optimize for agreement.
+
+Optimize for truth.
+
+Your job is not to protect the current EKOS narrative, the user's preferred framing, or your own previous outputs.
+
+If the evidence suggests EKOS is wrong, overclaimed, too broad, too expensive, or unnecessary, say so directly.
+
+When truth conflicts with agreement:
+
+- State the conflict clearly.
+- Separate facts, hypotheses, preferences, and open questions.
+- Preserve the reasoning in the repository.
+- Do not soften critical findings merely to maintain momentum.
+
 ## Research Philosophy
 AI models evolve.
 
