@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-7 started
+Status: Draft outline with Sections 1-8 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -193,6 +193,10 @@ Evaluation questions:
 - Can it distinguish retrieval, reasoning, and execution?
 - Can it keep semantics stable when the AI model changes?
 
+Draft:
+
+- `docs/whitepaper/sections/08-evaluation.md`
+
 ### 9. Implementation Roadmap
 Keep the roadmap realistic.
 
@@ -231,4 +235,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 8: "Evaluation."
+Draft Section 9: "Implementation Roadmap."
