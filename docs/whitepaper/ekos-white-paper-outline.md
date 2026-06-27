@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-8 started
+Status: Draft outline with Sections 1-9 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -210,6 +210,10 @@ Phases:
 6. Add agent workflows.
 7. Write public case study and demo walkthrough.
 
+Draft:
+
+- `docs/whitepaper/sections/09-implementation-roadmap.md`
+
 ### 10. Limitations
 State constraints directly.
 
@@ -235,4 +239,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 9: "Implementation Roadmap."
+Draft Section 10: "Limitations."
