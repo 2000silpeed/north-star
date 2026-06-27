@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-4 started
+Status: Draft outline with Sections 1-5 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -125,6 +125,10 @@ Proposed layers:
 6. Agent layer: planning, analysis, recommendation, execution support
 7. Governance layer: review, versioning, auditability, rollback
 
+Draft:
+
+- `docs/whitepaper/sections/05-ekos-architecture.md`
+
 ### 6. Design Principles
 Anchor the system.
 
@@ -219,4 +223,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 5: "EKOS Architecture."
+Draft Section 6: "Design Principles."
