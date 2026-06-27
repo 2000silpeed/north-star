@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-9 started
+Status: Draft outline with Sections 1-10 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -224,6 +224,10 @@ Current limitations:
 - Claims about business impact must remain hypotheses until validated.
 - EKOS must avoid becoming a private vocabulary disconnected from existing enterprise architecture concepts.
 
+Draft:
+
+- `docs/whitepaper/sections/10-limitations.md`
+
 ### 11. Conclusion
 Return to the thesis.
 
@@ -239,4 +243,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 10: "Limitations."
+Draft Section 11: "Conclusion."

@@ -50,5 +50,5 @@ The immediate project priority is to turn EKOS from an idea into a coherent publ
 1. Define the problem enterprise AI cannot solve without EKOS.
 2. Define EKOS in one sentence.
 3. Expand the EKOS White Paper from `docs/whitepaper/ekos-white-paper-outline.md`.
-4. Continue with Section 10: "Limitations."
+4. Continue with Section 11: "Conclusion."
 5. Connect all existing projects to the EKOS narrative or archive them.
