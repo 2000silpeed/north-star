@@ -256,3 +256,9 @@ Start Phase 1: Enterprise Concept Glossary.
 Assembled draft:
 
 - `docs/whitepaper/the-ekos-white-paper.md`
+
+## Korean Understanding Version
+The Korean version is maintained separately as a reader aid, not as the canonical white paper.
+
+- `docs/whitepaper-ko/README.md`
+- `docs/whitepaper-ko/the-ekos-white-paper-ko.md`

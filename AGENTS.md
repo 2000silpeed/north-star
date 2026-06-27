@@ -51,5 +51,6 @@ The immediate project priority is to turn EKOS from an idea into a coherent publ
 2. Define EKOS in one sentence.
 3. Expand the EKOS White Paper from `docs/whitepaper/ekos-white-paper-outline.md`.
 4. Maintain the assembled white paper draft at `docs/whitepaper/the-ekos-white-paper.md`.
-5. Start Phase 1: Enterprise Concept Glossary.
-6. Connect all existing projects to the EKOS narrative or archive them.
+5. Review the Korean understanding version at `docs/whitepaper-ko/the-ekos-white-paper-ko.md`.
+6. Start Phase 1: Enterprise Concept Glossary.
+7. Connect all existing projects to the EKOS narrative or archive them.
