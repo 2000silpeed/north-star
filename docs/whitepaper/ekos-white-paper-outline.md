@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-2 started
+Status: Draft outline with Sections 1-3 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -88,6 +88,10 @@ Topics:
 Key argument:
 
 Enterprise semantics should be modeled as infrastructure because they are more stable than any single AI model.
+
+Draft:
+
+- `docs/whitepaper/sections/03-enterprise-meaning-as-infrastructure.md`
 
 ### 4. What EKOS Is
 Define EKOS clearly.
@@ -211,4 +215,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 3: "Enterprise Meaning as Infrastructure."
+Draft Section 4: "What EKOS Is."
