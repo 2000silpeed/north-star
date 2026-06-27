@@ -39,6 +39,181 @@ Claims are separated into explicit and implicit claims.
   - Medium: plausible and central, but requires prototype evidence.
   - Low: important but currently under-evidenced or likely domain-dependent.
 
+## Core Architectural Claim Falsifiability Controls
+
+This section adds rejection controls for the core architectural claims only. It does not revise the white paper thesis. It defines how the research program should lose if simpler explanations or stronger baselines explain the same results.
+
+### EKOS-CLAIM-003
+
+- Alternative Hypothesis: The main blocker is access, integration, data quality, permissions, or workflow ownership, not semantic representation.
+- Hidden Assumption: All relevant facts can be available while the system still fails because it lacks explicit business meaning.
+- Falsification Condition: Full-context and tool-enabled baselines solve the same cases once access and source quality are controlled.
+- Minimum Success Threshold: EKOS must outperform the strongest same-facts baseline on pre-registered semantic-error categories, not only produce a more structured answer.
+- Baseline Tie Interpretation: A tie means the "meaning problem" is not yet shown to be the binding constraint.
+- Claim Revision if Failed: Narrow the claim to cases where access and source quality are already adequate but interpretation still fails.
+
+### EKOS-CLAIM-004
+
+- Alternative Hypothesis: Strong retrieval, long-context prompting, metadata filters, and schema-aware prompts are sufficient for the first target workflows.
+- Hidden Assumption: A stable semantic representation adds necessary information beyond well-assembled text.
+- Falsification Condition: Strong text-only baselines match EKOS on factual correctness, relationship traversal, evidence use, and boundary recognition.
+- Minimum Success Threshold: EKOS must beat the strongest text baseline by a practical margin on the primary rubric while introducing no additional unsupported claims.
+- Baseline Tie Interpretation: A tie means EKOS has not proven necessity over retrieval; it may only be one packaging of context.
+- Claim Revision if Failed: Reframe retrieval critique from "retrieval alone is insufficient" to "weak or unstructured retrieval is insufficient."
+
+### EKOS-CLAIM-008
+
+- Alternative Hypothesis: Well-designed typed tools and source-system APIs already expose enough enterprise semantics.
+- Hidden Assumption: Tool schemas can expose capability without exposing the meaning needed for correct business judgment.
+- Falsification Condition: A typed-tool baseline matches EKOS on object grounding, process-state interpretation, and action-boundary classification.
+- Minimum Success Threshold: EKOS must reduce tool-using baseline errors in cases where the tool output is correct but interpretation is ambiguous.
+- Baseline Tie Interpretation: A tie means tool design, not EKOS, may be the sufficient intervention.
+- Claim Revision if Failed: Limit the claim to poorly designed or low-context tool environments.
+
+### EKOS-CLAIM-010
+
+- Alternative Hypothesis: Agent orchestration can infer and maintain enough context dynamically through retrieval, tools, and planning.
+- Hidden Assumption: Agents cannot reliably reconstruct enterprise context at run time without an explicit EKOS substrate.
+- Falsification Condition: The same agent without EKOS but with retrieval and tools matches EKOS-backed agent performance.
+- Minimum Success Threshold: EKOS context must improve the same agent on external task outcomes, not only on EKOS-shaped intermediate fields.
+- Baseline Tie Interpretation: A tie means agent frameworks may absorb the context role EKOS claims.
+- Claim Revision if Failed: Reframe EKOS as an optional agent context source rather than an architectural foundation for agents.
+
+### EKOS-CLAIM-012
+
+- Alternative Hypothesis: Enterprise meaning is better handled as workflow-specific context rather than shared infrastructure.
+- Hidden Assumption: The semantic layer is reusable enough across workflows to justify infrastructure cost.
+- Falsification Condition: Each new workflow requires mostly new objects, policies, relationships, evidence rules, and governance.
+- Minimum Success Threshold: At least three related workflows must reuse material parts of the same semantic model while reducing per-workflow context construction effort after the first workflow.
+- Baseline Tie Interpretation: A tie against workflow-specific systems means EKOS has not earned the infrastructure claim.
+- Claim Revision if Failed: Treat EKOS as a domain modeling method, not shared enterprise intelligence infrastructure.
+
+### EKOS-CLAIM-013
+
+- Alternative Hypothesis: The proposed minimum substrate is overcomplete, incomplete, or domain-specific.
+- Hidden Assumption: All listed primitives are necessary for the first meaningful EKOS proof.
+- Falsification Condition: Removing one or more claimed required primitives does not reduce performance on cases designed to depend on them.
+- Minimum Success Threshold: Each primitive called "minimum" must show measurable contribution in an ablation or be reclassified as optional.
+- Baseline Tie Interpretation: A tie after removing a primitive means that primitive is not currently justified as required.
+- Claim Revision if Failed: Replace the fixed minimum substrate with a smaller empirically supported core plus workflow-specific extensions.
+
+### EKOS-CLAIM-019
+
+- Alternative Hypothesis: Ordinary citations or source links are enough for reviewer trust and correctness.
+- Hidden Assumption: Claim-level evidence links improve decisions, not only answer appearance.
+- Falsification Condition: Reviewers using claim-linked evidence are no more accurate, faster, or better calibrated than reviewers using ordinary citations.
+- Minimum Success Threshold: Structured evidence must improve at least one independent reviewer outcome without reducing error detection.
+- Baseline Tie Interpretation: A tie means the evidence layer may be a presentation improvement rather than a core architectural requirement.
+- Claim Revision if Failed: Limit the evidence claim to audit-heavy workflows where claim-level traceability is independently required.
+
+### EKOS-CLAIM-021
+
+- Alternative Hypothesis: Execution safety belongs in policy engines, IAM, workflow approvals, and transaction controls, not EKOS.
+- Hidden Assumption: A semantic boundary layer adds value beyond authoritative enforcement systems.
+- Falsification Condition: Policy and workflow enforcement baselines match or exceed EKOS on unsafe-action prevention.
+- Minimum Success Threshold: EKOS must correctly identify direct-execution traps that a capability-only tool baseline misses.
+- Baseline Tie Interpretation: A tie means EKOS should not claim ownership of execution boundaries.
+- Claim Revision if Failed: Reframe EKOS boundary output as advisory context consumed by authoritative control systems.
+
+### EKOS-CLAIM-022
+
+- Alternative Hypothesis: Reviewability, versioning, reuse, and governance are process requirements, not architectural requirements.
+- Hidden Assumption: Governance improves semantic reliability enough to justify maintenance cost and latency.
+- Falsification Condition: Governance slows semantic updates without reducing errors, drift, or reviewer disagreement.
+- Minimum Success Threshold: Semantic changes must be reviewable, versioned, auditable, and rollback-ready within an operationally acceptable review cycle.
+- Baseline Tie Interpretation: A tie means existing documentation and change-management practices may be sufficient.
+- Claim Revision if Failed: Narrow governance from core architecture to project methodology until it shows measurable reliability gains.
+
+### EKOS-CLAIM-023
+
+- Alternative Hypothesis: EKOS is a bundle of existing enterprise architecture patterns rather than a distinct infrastructure layer.
+- Hidden Assumption: EKOS owns a responsibility not already covered by source systems, semantic layers, data catalogs, KGs, workflow engines, policy engines, RAG, or agents.
+- Falsification Condition: A responsibility matrix maps every EKOS function to existing systems without a remaining unique role.
+- Minimum Success Threshold: EKOS must identify a necessary responsibility boundary that existing categories do not cover together in the target evaluation.
+- Baseline Tie Interpretation: A tie against an assembled existing-stack baseline means the product-category claim collapses.
+- Claim Revision if Failed: Reframe EKOS as an integration pattern or research vocabulary rather than a new infrastructure category.
+
+### EKOS-CLAIM-024
+
+- Alternative Hypothesis: EKOS duplicates ERP, retrieval, APIs, agents, or human review despite claiming not to replace them.
+- Hidden Assumption: EKOS can add semantic value without taking over source-system, retrieval, agent, or governance responsibilities.
+- Falsification Condition: The architecture requires EKOS to become a source of record, agent framework, policy engine, or workflow engine to demonstrate value.
+- Minimum Success Threshold: Every evaluated responsibility must have a single owner, and EKOS-owned responsibilities must not conflict with authoritative systems.
+- Baseline Tie Interpretation: A tie means duplicated responsibilities are unjustified.
+- Claim Revision if Failed: Reduce EKOS to the non-duplicative responsibility that survives the boundary audit.
+
+### EKOS-CLAIM-025
+
+- Alternative Hypothesis: A middle semantic layer inevitably becomes a competing or stale source of truth.
+- Hidden Assumption: EKOS can transform source facts while preserving authority, provenance, and freshness.
+- Falsification Condition: EKOS outputs diverge from authoritative source records or cannot explain which source owns a fact.
+- Minimum Success Threshold: Every semantic object, relationship, and evidence item used in evaluation must retain source authority, timestamp, and provenance.
+- Baseline Tie Interpretation: A tie with direct source access means mediation through EKOS is not yet justified.
+- Claim Revision if Failed: Limit EKOS to source-referenced views and remove any claim that requires independent semantic authority.
+
+### EKOS-CLAIM-026
+
+- Alternative Hypothesis: Source-to-meaning conversion is subjective business-rule engineering rather than a general EKOS capability.
+- Hidden Assumption: Domain reviewers can agree on the correct semantic mapping from source signals to business meaning.
+- Falsification Condition: Independent reviewers disagree materially on object types, relationships, states, or policy applicability for the same source records.
+- Minimum Success Threshold: Semantic mappings must meet a pre-registered reviewer-agreement threshold before model outputs are scored.
+- Baseline Tie Interpretation: A tie means conventional business rules or workflow-specific schemas may be sufficient.
+- Claim Revision if Failed: Narrow the semantic model claim to domains where reviewer agreement is demonstrably high.
+
+### EKOS-CLAIM-029
+
+- Alternative Hypothesis: Business context retrieval can be achieved by workflow-specific assemblers, SQL views, or structured prompts without EKOS.
+- Hidden Assumption: EKOS context assembly improves task outcomes beyond merely packaging known facts.
+- Falsification Condition: A workflow-specific context assembler matches EKOS on accuracy, reviewability, and maintenance effort.
+- Minimum Success Threshold: EKOS must improve independent task outcomes over both chunk retrieval and non-EKOS structured context assembly.
+- Baseline Tie Interpretation: A tie means "business context" is not unique to EKOS.
+- Claim Revision if Failed: Reframe EKOS retrieval as one context-assembly strategy rather than the required enterprise retrieval architecture.
+
+### EKOS-CLAIM-031
+
+- Alternative Hypothesis: Business authority is already handled by workflow approval and policy enforcement systems.
+- Hidden Assumption: EKOS can classify authority more accurately or usefully than capability and permission systems alone.
+- Falsification Condition: Authoritative workflow and policy systems provide the same boundary decisions with lower risk.
+- Minimum Success Threshold: EKOS must correctly distinguish direct execution, draft, recommendation, escalation, and prohibited action in pre-registered trap cases.
+- Baseline Tie Interpretation: A tie means EKOS should not claim authority classification as a unique architectural role.
+- Claim Revision if Failed: Treat EKOS authority output as explanatory metadata, not a control boundary.
+
+### EKOS-CLAIM-033
+
+- Alternative Hypothesis: Governance is useful documentation discipline but not a necessary architecture layer.
+- Hidden Assumption: Governance materially improves semantic correctness and continuity.
+- Falsification Condition: Governed semantic changes do not reduce regressions, stale meanings, or reviewer disputes versus lightweight review.
+- Minimum Success Threshold: Governance must catch or prevent semantic errors that would otherwise affect evaluation outputs.
+- Baseline Tie Interpretation: A tie means governance overhead is not justified as architecture.
+- Claim Revision if Failed: Move governance from architectural requirement to research operations requirement.
+
+### EKOS-CLAIM-035
+
+- Alternative Hypothesis: Durable source systems, typed APIs, rules, and prompts provide enough continuity across model changes.
+- Hidden Assumption: Externalized enterprise meaning stabilizes model behavior, not only input structure.
+- Falsification Condition: Different models using the same EKOS context still produce materially different object grounding, evidence use, or boundary decisions.
+- Minimum Success Threshold: Stable fields and decisions must remain consistent across a pre-registered multi-model or multi-prompt test.
+- Baseline Tie Interpretation: A tie means EKOS has not shown model-independence beyond ordinary structured inputs.
+- Claim Revision if Failed: Narrow the claim to preserving source context, not stabilizing final AI behavior.
+
+### EKOS-CLAIM-040
+
+- Alternative Hypothesis: Explicit enterprise meaning does not improve enterprise AI understanding beyond strong baselines.
+- Hidden Assumption: EKOS adds causal value rather than receiving a more favorable input representation.
+- Falsification Condition: Strong retrieval, full-context, typed-tool, agentic, or workflow-specific baselines tie or beat EKOS.
+- Minimum Success Threshold: EKOS must beat the strongest fair baseline on pre-registered primary metrics and survive failure-mode analysis.
+- Baseline Tie Interpretation: A tie rejects the necessity claim and downgrades EKOS to one possible approach.
+- Claim Revision if Failed: Replace the central claim with a narrower statement about where explicit meaning helps and where it does not.
+
+### EKOS-CLAIM-041
+
+- Alternative Hypothesis: The proposed rubric measures EKOS-shaped output rather than enterprise utility.
+- Hidden Assumption: Object identity, relationship traversal, evidence traceability, process state, policy boundaries, and model-change stability predict useful enterprise decisions.
+- Falsification Condition: Rubric scores do not correlate with domain-expert correctness, review time, escalation quality, audit readiness, or calibrated confidence.
+- Minimum Success Threshold: The rubric must show acceptable reviewer agreement and positive correlation with at least one independent task-success measure.
+- Baseline Tie Interpretation: A tie means the evaluation cannot support architecture claims even if EKOS scores well internally.
+- Claim Revision if Failed: Treat the rubric as an internal diagnostic tool, not evidence of enterprise understanding.
+
 ## Claim Matrix
 
 ### EKOS-CLAIM-001
@@ -626,9 +801,9 @@ The current white paper contains one central empirical hypothesis:
 The most important validation path is:
 
 1. Build synthetic SAP logistics cases in `2000silpeed/ekos-sap-knowledge-os`.
-2. Build a fair retrieval-only baseline over the same facts.
+2. Build fair baselines over the same facts: retrieval-only first, then full-context, typed-tool, agentic, and workflow-specific baselines for claims that assert necessity beyond retrieval.
 3. Build EKOS-backed context assembly over explicit objects, relationships, evidence, policies, roles, and boundaries.
-4. Score both systems with the seven-metric rubric.
+4. Score EKOS and all baselines with the seven-metric rubric and independent task-success measures where available.
 5. Track qualitative reviewer notes and convert repeated failures into new test cases.
 6. Keep claims limited to architecture validation until real workflow evidence exists.
 
