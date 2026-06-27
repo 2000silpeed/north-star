@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-3 started
+Status: Draft outline with Sections 1-4 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -107,6 +107,10 @@ Clarify what EKOS is not:
 - Not just GraphRAG
 - Not just an agent framework
 - Not just an AI assistant
+
+Draft:
+
+- `docs/whitepaper/sections/04-what-ekos-is.md`
 
 ### 5. EKOS Architecture
 Describe the platform layers.
@@ -215,4 +219,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 4: "What EKOS Is."
+Draft Section 5: "EKOS Architecture."
