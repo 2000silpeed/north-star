@@ -6,7 +6,10 @@ Status: Reject as-is
 
 Review stance: Hostile Principal Engineer. The goal of this review is to reject the paper unless the paper survives direct attack.
 
-Scope: `docs/whitepaper/the-ekos-white-paper.md`
+Scope:
+
+- `docs/whitepaper/the-ekos-white-paper.md`
+- `docs/research/ekos-validation-matrix.md`
 
 Non-goal: This review does not rewrite the paper. It attacks the current argument so EKOS can become stronger.
 
@@ -18,6 +21,8 @@ The white paper has a promising instinct, but it currently reads more like an in
 
 The paper is directionally interesting. It is not yet rigorous enough.
 
+The validation matrix improves the situation by making claims testable, but it also exposes how much of EKOS is still unsupported. A hostile reviewer should treat the matrix not as proof, but as an admission that the paper currently depends on unrun experiments, unvalidated metrics, and untested confidence assumptions.
+
 ## Top Rejection Reasons
 
 1. The core thesis is asserted more than demonstrated.
@@ -28,6 +33,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 6. The paper critiques retrieval, tools, MCP, APIs, and agents, but does not compare against strong modern versions of those approaches.
 7. The SAP logistics prototype is too narrow to carry the weight of the thesis.
 8. Governance, security, human review, and execution boundaries are invoked as safety mechanisms but not designed.
+9. The validation matrix identifies many missing evidence items but does not yet convert them into rejection thresholds.
 
 ## Critical Findings
 
@@ -156,9 +162,49 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - What would make this less rejectable:
   State that no execution-boundary claim is credible for production until access control, data minimization, audit, and secure tool execution are modeled.
 
+### HR-011: The Validation Matrix Has No Hard Rejection Thresholds
+
+- Type: Missing experiment, weak research design
+- Source area: Validation matrix
+- Relevant matrix pattern:
+  - Claims list "missing evidence," "how experimentally validated," and "risks if false."
+  - The matrix rarely states what result would force EKOS to abandon or narrow a claim.
+- Attack:
+  A validation matrix that only says how claims could be validated is incomplete. It must also say what would falsify each claim. Without hard rejection thresholds, EKOS can absorb weak or mixed results without changing the thesis.
+- Why this is a rejection issue:
+  A serious research program must be able to lose.
+- What would make this less rejectable:
+  Add explicit fail conditions per major claim: score deltas, baseline tie conditions, ablation failures, reviewer disagreement thresholds, cost thresholds, and cross-domain failure criteria.
+
+### HR-012: Confidence Labels May Create False Rigor
+
+- Type: Weak evidence, overclaim risk
+- Source area: Validation matrix
+- Relevant matrix pattern:
+  - Claims are labeled High, Medium-High, Medium, or Low before experiments exist.
+- Attack:
+  Pre-experimental confidence labels can make the thesis look more measured than it is. Some "High" confidence labels are conceptual plausibility, not evidence. A hostile reviewer will ask whether these labels are calibrated, peer-reviewed, or merely internal belief.
+- Why this is a rejection issue:
+  Confidence language can smuggle subjective conviction into a document that is supposed to become empirical.
+- What would make this less rejectable:
+  Split confidence into "conceptual plausibility," "prototype evidence," "domain expert evidence," and "production evidence."
+
+### HR-013: The Validation Matrix Still Centers EKOS-Shaped Metrics
+
+- Type: Circular evaluation
+- Source area: Validation matrix
+- Relevant matrix pattern:
+  - Many suggested benchmarks map directly to EKOS primitives: object identity, evidence traceability, relationship traversal, policy boundaries, model-change stability.
+- Attack:
+  The matrix reinforces the same circularity as the paper. It mostly asks whether EKOS can produce the categories EKOS was designed to produce.
+- Why this is a rejection issue:
+  The project still lacks independent enterprise utility metrics.
+- What would make this less rejectable:
+  Require external outcome metrics alongside EKOS-shaped metrics: diagnosis accuracy, review time, escalation correctness, false confidence rate, and domain expert preference.
+
 ## Major Findings
 
-### HR-011: "Read-Only Understanding" May Be Too Easy
+### HR-014: "Read-Only Understanding" May Be Too Easy
 
 - Type: Weak experiment
 - Source area: Sections 7, 8, 10
@@ -167,7 +213,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   The prototype may look disciplined while avoiding the conditions that make enterprise semantics hard.
 
-### HR-012: The Paper Assumes Source Systems Are Trustworthy Enough
+### HR-015: The Paper Assumes Source Systems Are Trustworthy Enough
 
 - Type: Hidden assumption
 - Source area: Architecture and limitations
@@ -176,7 +222,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   Enterprise meaning often fails because source systems disagree. EKOS needs a conflict model, not only source references.
 
-### HR-013: Identity Resolution Is Treated as a Detail, but It Is Central
+### HR-016: Identity Resolution Is Treated as a Detail, but It Is Central
 
 - Type: Hidden assumption, missing experiment
 - Source area: Sections 3, 5, 8
@@ -185,7 +231,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   Object identity errors can make EKOS worse than retrieval because they create false confidence over wrong joins.
 
-### HR-014: Evidence Modeling Is Not Formal Enough
+### HR-017: Evidence Modeling Is Not Formal Enough
 
 - Type: Undefined concept, weak argument
 - Source area: Sections 3, 5, 8, 10
@@ -194,7 +240,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   Without evidence semantics, "evidence-backed" can degrade into a richer citation format.
 
-### HR-015: Policy and Execution Boundary Are Mixed Together
+### HR-018: Policy and Execution Boundary Are Mixed Together
 
 - Type: Undefined concept, logical gap
 - Source area: Sections 3, 5, 6, 8
@@ -203,7 +249,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   A system can have API permission but lack business authority, or have business authority but lack system permission. EKOS must distinguish these precisely.
 
-### HR-016: Human Review Is Used as an Escape Hatch
+### HR-019: Human Review Is Used as an Escape Hatch
 
 - Type: Weak argument
 - Source area: Sections 3, 5, 6, 8, 10
@@ -212,7 +258,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   "Human review required" is not an architecture unless review work is modeled.
 
-### HR-017: Model-Change Stability Can Be Trivialized
+### HR-020: Model-Change Stability Can Be Trivialized
 
 - Type: Weak metric
 - Source area: Section 8
@@ -221,7 +267,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   The metric needs to test whether different models correctly use the stable context, not merely whether the context exists.
 
-### HR-018: The Paper Does Not Define "Reliable"
+### HR-021: The Paper Does Not Define "Reliable"
 
 - Type: Undefined concept
 - Source area: Abstract, Sections 4, 7
@@ -230,7 +276,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   Without a reliability definition, the paper can claim success after any positive prototype result.
 
-### HR-019: The Paper Does Not Define the Minimum Viable Semantic Layer
+### HR-022: The Paper Does Not Define the Minimum Viable Semantic Layer
 
 - Type: Logical gap
 - Source area: Sections 3, 5, 7
@@ -239,7 +285,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   Without ablation, EKOS may overbuild the semantic layer.
 
-### HR-020: The Paper Leaks the Expected Answer into the Dataset
+### HR-023: The Paper Leaks the Expected Answer into the Dataset
 
 - Type: Circular experiment
 - Source area: Sections 7, 8
@@ -248,7 +294,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   The evaluation must distinguish semantic reasoning from fixture design.
 
-### HR-021: "Operationally Realistic Synthetic Data" Is Not Enough
+### HR-024: "Operationally Realistic Synthetic Data" Is Not Enough
 
 - Type: Undefined concept, hidden assumption
 - Source area: Sections 7 and 10
@@ -257,7 +303,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   Synthetic data can create false confidence.
 
-### HR-022: The Architecture Has Too Many Layers for the First Proof
+### HR-025: The Architecture Has Too Many Layers for the First Proof
 
 - Type: Scope risk
 - Source area: Section 5
@@ -266,7 +312,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   A broad architecture can hide failure because every weak result can be blamed on an incomplete layer.
 
-### HR-023: "Infrastructure" Requires Reuse Proof
+### HR-026: "Infrastructure" Requires Reuse Proof
 
 - Type: Overclaim
 - Source area: Sections 3, 4, 11
@@ -275,7 +321,7 @@ The paper is directionally interesting. It is not yet rigorous enough.
 - Why this matters:
   The infrastructure claim should be earned through reuse across multiple workflows or consumers.
 
-### HR-024: The Paper Lacks a Falsification Plan
+### HR-027: The Paper Lacks a Falsification Plan
 
 - Type: Missing experiment
 - Source area: Section 8

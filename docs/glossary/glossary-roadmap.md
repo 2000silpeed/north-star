@@ -4,9 +4,12 @@ Date: 2026-06-27
 
 Status: Conceptual taxonomy draft
 
-Source: `docs/whitepaper/the-ekos-white-paper.md`
+Sources:
 
-Purpose: Identify, cluster, deduplicate, and flag ambiguous enterprise concepts currently used in the EKOS white paper.
+- `docs/whitepaper/the-ekos-white-paper.md`
+- `docs/research/ekos-validation-matrix.md`
+
+Purpose: Identify, cluster, deduplicate, and flag ambiguous enterprise concepts currently used in the EKOS white paper and validation matrix.
 
 Non-goal: This document does not define terms. Definitions belong in later glossary work.
 
@@ -51,6 +54,13 @@ This map removes duplicate wording before later glossary definition work.
 | EKOS-Backed System | EKOS-backed answering, EKOS-backed answer generation, EKOS-backed context |
 | Model-Change Stability | model independence, stable answers across model changes |
 | Public-Safe Data | synthetic data, anonymized data, public-safe dataset |
+| Claim | technical claim, explicit claim, implicit claim, hypothesis |
+| Supporting Reasoning | existing supporting reasoning, internal reasoning, rationale |
+| Missing Evidence | evidence gap, unproven claim, missing experiment |
+| Experimental Validation | validation method, how to validate, experiment plan |
+| Benchmark | suggested benchmark, evaluation, test, rubric |
+| Confidence Level | current confidence, confidence scale, confidence label |
+| Falsification Condition | risks if false, fail condition, rejection threshold |
 
 ## Core Concepts
 
@@ -133,7 +143,6 @@ This map removes duplicate wording before later glossary definition work.
 - Business Situation
 - Business Chain
 - Reasoning Path
-- Confidence Basis
 - Root Cause
 - Root Cause Claim
 - Root Cause Hypothesis
@@ -157,7 +166,6 @@ This map removes duplicate wording before later glossary definition work.
 - Evidence Link
 - Claim-Supported Evidence
 - Conflicting Evidence
-- Missing Evidence
 - Stale Evidence
 - Confidence Basis
 - Review Requirement
@@ -221,6 +229,47 @@ This map removes duplicate wording before later glossary definition work.
 - Model Independence
 - Fact/Hypothesis/Recommendation Separation
 - Policy and Boundary Recognition
+
+### Validation Matrix Cluster
+
+- Claim ID
+- Claim Matrix
+- Exact Claim
+- Explicit Claim
+- Implicit Claim
+- Technical Claim
+- Testable Claim
+- Core Hypothesis
+- Supporting Reasoning
+- Missing Evidence
+- Experimental Validation
+- Validation Method
+- Risk if False
+- Suggested Benchmark
+- Suggested Evaluation
+- Confidence Level
+- Confidence Scale
+- Current Confidence
+- Conceptual Plausibility
+- Prototype Evidence
+- Production Evidence
+- Research Program
+- Immediate Research Question
+- Next Research Step
+- Claim Hygiene
+- Claim Scope
+- Architecture Validation
+- Production Readiness Claim
+- Business Impact Claim
+- Generalization Claim
+- Cross-Domain Validation
+- Falsification Condition
+- Rejection Threshold
+- Baseline Tie Condition
+- Score Delta
+- Ablation Study
+- Inter-Rater Reliability
+- Domain Reviewer Realism Score
 
 ### SAP Logistics Scenario Cluster
 
@@ -510,6 +559,10 @@ Deprecated here means "do not promote as an EKOS glossary concept or product ide
 - Data Privacy
 - Data Minimization
 - Sensitive Data Handling
+- Threat Model
+- Security Model
+- Access-Control Design
+- Privacy Constraint
 - Audit Log
 - Approval History
 - Secure Tool Execution
@@ -528,6 +581,9 @@ Deprecated here means "do not promote as an EKOS glossary concept or product ide
 - Historical Context
 - Real Enterprise Data
 - Private Enterprise Data
+- Real Workflow Evidence
+- Private-Data Prototype
+- Live-Integration Prototype
 - Organizational Review Process
 
 ### Business Impact Cluster
