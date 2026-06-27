@@ -62,5 +62,5 @@ The immediate project priority is to turn EKOS from an idea into a coherent publ
 3. Expand the EKOS White Paper from `docs/whitepaper/ekos-white-paper-outline.md`.
 4. Maintain the assembled white paper draft at `docs/whitepaper/the-ekos-white-paper.md`.
 5. Review the Korean understanding version at `docs/whitepaper-ko/the-ekos-white-paper-ko.md`.
-6. Start Phase 1: Enterprise Concept Glossary as a North Star specification artifact.
+6. Review Phase 1 glossary at `docs/glossary/enterprise-concept-glossary-v1.md`.
 7. Connect all existing projects to the EKOS narrative or archive them.

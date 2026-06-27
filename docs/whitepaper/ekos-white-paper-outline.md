@@ -253,7 +253,11 @@ Draft:
 - Minimal working prototype or executable walkthrough in `2000silpeed/ekos-sap-knowledge-os`
 
 ## Next Writing Task
-Start Phase 1: Enterprise Concept Glossary as a North Star specification artifact.
+Review Phase 1 glossary, then inspect `2000silpeed/ekos-sap-knowledge-os` before creating implementation mappings.
+
+Glossary draft:
+
+- `docs/glossary/enterprise-concept-glossary-v1.md`
 
 Assembled draft:
 
