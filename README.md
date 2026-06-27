@@ -11,6 +11,18 @@ Understanding Enterprise. Powering AI.
 ## North Star
 Define, explain, and steward EKOS: enterprise intelligence infrastructure that turns business systems, processes, and evidence into a semantic foundation AI can reliably use.
 
+## Operating Hierarchy
+```text
+AIOS
+  Research operating system
+
+North Star
+  Research lab, strategy headquarters, memory system
+
+EKOS
+  First major research result and implementation product
+```
+
 ## Repository Boundary
 North Star is the research memory, strategy, white paper, and portfolio headquarters for EKOS.
 
@@ -44,7 +56,10 @@ Chat is temporary. Git is persistent.
 
 Important ideas, decisions, and strategy changes must be recorded here so future sessions can continue from documented reasoning rather than memory.
 
+Before strategic, architectural, or documentation work, read `AIOS/` first.
+
 ## Repository Map
+- `AIOS/` - AI research operating system for North Star
 - `docs/adr/` - architecture decisions
 - `docs/diary/` - session memory and working history
 - `docs/research/` - working hypotheses and research notes
