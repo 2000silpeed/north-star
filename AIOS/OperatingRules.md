@@ -42,12 +42,17 @@ Forbidden unless explicitly instructed:
 ## Research Note Trigger
 Create a Research Note before continuing if:
 
+- A major discussion begins.
 - A new architectural insight appears.
 - A major project hierarchy changes.
 - A repository responsibility changes.
 - A concept gains a new meaning.
 - A rejected direction explains an important future risk.
 - Multiple AI systems may later need the reasoning.
+
+Major discussions include conversations that affect North Star identity, AIOS rules, EKOS thesis, repository boundaries, research methodology, evaluation philosophy, public narrative, glossary meaning, or cross-repository strategy.
+
+Minor edits, typo fixes, and narrow formatting changes do not require a Research Note.
 
 ## Decision Protocol
 When there are multiple possible directions:

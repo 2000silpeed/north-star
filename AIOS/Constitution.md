@@ -70,10 +70,12 @@ Document:
 - Recommendation
 - Why the recommendation is stronger
 
-## Rule 6: New Insight Requires a Research Note
-If a new architectural insight appears, stop normal work first.
+## Rule 6: Major Discussions Require Research Notes
+Every major discussion must create a Research Note preserving the full reasoning process, not only the conclusion.
 
-Create a Research Note that preserves the insight, context, assumptions, alternatives, rejected paths, open questions, and next research.
+North Star is a collective research memory, not a documentation repository.
+
+Create a Research Note that preserves why the discussion started, initial assumptions, competing ideas, rejected alternatives, turning points, final decision or current hypothesis, open questions, context for future AI, and next research.
 
 Then continue.
 

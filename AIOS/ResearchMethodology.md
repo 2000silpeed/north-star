@@ -12,15 +12,25 @@ The goal is not to produce more text.
 The goal is to make thinking durable.
 
 ## Research Note Requirement
-Create a Research Note when a new insight changes:
+Every major discussion must create a Research Note preserving the full reasoning process, not only the conclusion.
 
+North Star is a collective research memory, not a documentation repository.
+
+Create a Research Note when a discussion affects:
+
+- North Star identity
+- AIOS rules
 - Project hierarchy
 - Repository responsibility
 - Architecture direction
 - Concept meaning
 - Evaluation philosophy
 - Public narrative
+- Glossary meaning
+- Cross-repository strategy
 - Future implementation constraints
+
+Minor edits, typo fixes, and narrow formatting changes do not require a Research Note.
 
 ## Research Note Location
 Research notes live in:

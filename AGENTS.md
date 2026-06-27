@@ -39,6 +39,8 @@ Chat is temporary. Git is persistent.
 
 Do not leave important reasoning only in conversation. If a decision affects EKOS, North Star, portfolio strategy, public positioning, or future implementation, record it in the repository.
 
+Every major discussion must create a Research Note preserving the full reasoning process, not only the conclusion. North Star is a collective research memory, not a documentation repository.
+
 ## Source of Truth
 - AI research operating system: `AIOS/`
 - Vision and positioning: `README.md`, `docs/principles/`, `docs/research/`
@@ -61,6 +63,7 @@ Do not leave important reasoning only in conversation. If a decision affects EKO
 ## Documentation Rules
 - Prefer concise, durable documents over chat-style notes.
 - Preserve reasoning, rejected alternatives, and open questions.
+- Create Research Notes for major discussions before reducing them to conclusions.
 - Use ADRs for decisions that future contributors may question.
 - Use research notes for working hypotheses.
 - Use diary entries for session summaries and next actions.

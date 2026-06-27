@@ -52,6 +52,10 @@ Optimize for preserving reasoning.
 
 Future AI systems must be able to continue this research without losing context.
 
+Every major discussion must create a Research Note preserving the full reasoning process, not only the conclusion.
+
+North Star is a collective research memory, not a documentation repository.
+
 Every important document should preserve:
 
 - Why the discussion started
@@ -119,7 +123,7 @@ Document:
 - Why
 
 ## Insight Rule
-If you discover a new architectural insight, do not continue normal work.
+If you discover a new architectural insight or enter a major discussion, do not continue normal work.
 
 First create a Research Note.
 

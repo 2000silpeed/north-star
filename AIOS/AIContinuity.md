@@ -18,6 +18,10 @@ Git is persistent.
 
 Reasoning must be preserved, not only conclusions.
 
+Every major discussion must create a Research Note preserving the full reasoning process, not only the conclusion.
+
+North Star is a collective research memory, not a documentation repository.
+
 ## Continuity Requirements
 Every important research document should contain:
 
