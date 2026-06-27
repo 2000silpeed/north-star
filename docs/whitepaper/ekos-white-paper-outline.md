@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-11 drafted; abstract pending
+Status: Draft outline with Sections 0-11 drafted and assembled
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -43,6 +43,10 @@ Required claims:
 - Modern AI can reason over language but does not automatically understand enterprise operations.
 - Enterprise systems contain durable semantics that outlive models and prompts.
 - EKOS proposes an enterprise intelligence layer between business systems and AI systems.
+
+Draft:
+
+- `docs/whitepaper/sections/00-abstract.md`
 
 ### 1. The Enterprise AI Understanding Gap
 Explain why many enterprise AI initiatives remain shallow.
@@ -247,4 +251,8 @@ Draft:
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 0: "Abstract" and assemble the complete white paper draft.
+Start Phase 1: Enterprise Concept Glossary.
+
+Assembled draft:
+
+- `docs/whitepaper/the-ekos-white-paper.md`
