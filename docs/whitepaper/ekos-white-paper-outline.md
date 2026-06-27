@@ -202,17 +202,19 @@ Draft:
 - `docs/whitepaper/sections/08-evaluation.md`
 
 ### 9. Implementation Roadmap
-Keep the roadmap realistic.
+Keep the roadmap realistic and repository-aware.
+
+North Star is the research memory, strategy, white paper, and portfolio HQ. The actual EKOS implementation remains in `2000silpeed/ekos-sap-knowledge-os`.
 
 Phases:
 
-1. Define the enterprise concept glossary.
-2. Build a small SAP logistics ontology.
-3. Create synthetic sample data.
-4. Implement graph-backed retrieval.
-5. Add MCP execution boundaries.
-6. Add agent workflows.
-7. Write public case study and demo walkthrough.
+1. North Star: define the enterprise concept glossary.
+2. EKOS repository: create synthetic sample data.
+3. EKOS repository: implement the semantic model.
+4. EKOS repository: implement the context assembler.
+5. EKOS repository: add retrieval-only baseline and evaluation harness.
+6. EKOS repository: add execution boundary reasoning.
+7. North Star + EKOS repository: write public case study and demo walkthrough.
 
 Draft:
 
@@ -248,10 +250,10 @@ Draft:
 - Public examples of AI deployment failure modes in enterprises
 - Architecture comparison against RAG, GraphRAG, MCP, and agent frameworks
 - Synthetic SAP logistics example
-- Minimal working prototype or executable walkthrough
+- Minimal working prototype or executable walkthrough in `2000silpeed/ekos-sap-knowledge-os`
 
 ## Next Writing Task
-Start Phase 1: Enterprise Concept Glossary.
+Start Phase 1: Enterprise Concept Glossary as a North Star specification artifact.
 
 Assembled draft:
 
@@ -262,3 +264,8 @@ The Korean version is maintained separately as a reader aid, not as the canonica
 
 - `docs/whitepaper-ko/README.md`
 - `docs/whitepaper-ko/the-ekos-white-paper-ko.md`
+
+## Repository Boundary
+North Star must not recreate EKOS implementation work. Implementation references should point to:
+
+- `2000silpeed/ekos-sap-knowledge-os`

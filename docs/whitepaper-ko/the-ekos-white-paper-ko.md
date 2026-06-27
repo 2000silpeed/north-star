@@ -512,28 +512,60 @@ EKOS는 명확한 기준선과 비교되어야 한다.
 
 ## 9. 구현 로드맵
 
-첫 EKOS 구현은 작고, 공개 가능하고, 테스트 가능해야 한다.
+이 로드맵은 EKOS를 North Star 안에 새로 만들자는 계획이 아니다.
 
-개인 기업 시스템에 연결하는 것부터 시작해서는 안 된다. 전체 워크플로 자동화부터 시작해서도 안 된다. 모든 SAP 프로세스를 모델링하려고 해서도 안 된다.
+North Star는 EKOS의 연구 기억, 전략, 백서, 포트폴리오 HQ다. 실제 EKOS 구현은 기존 저장소인 `2000silpeed/ekos-sap-knowledge-os`에 남아 있어야 한다.
 
-첫 구현은 하나만 증명하면 된다.
+따라서 구현 로드맵은 두 저장소의 역할을 나누어 읽어야 한다. North Star는 논지, 용어, 평가 기준, 공개 설명을 맡는다. EKOS 구현 저장소는 코드, 데이터, 테스트, 데모, 실행 가능한 산출물을 맡는다.
+
+첫 EKOS 구현은 여전히 작고, 공개 가능하고, 테스트 가능해야 한다. 다만 그 구현은 North Star 안에 새로 만들지 않는다.
+
+첫 구현이 증명해야 할 것은 하나다.
 
 > 명시적인 기업 의미가 검색만 사용하는 접근보다 AI 이해를 개선한다.
+
+그 증명은 기존 EKOS 구현 저장소에서 이루어져야 한다.
+
+### 저장소 역할
+
+North Star가 맡는 일은 다음과 같다.
+
+- 백서
+- ADR
+- 글로서리와 개념 정의
+- 평가 기준
+- 공개 설명과 포트폴리오 맥락
+- 구현 저장소와 연결되는 조정 메모
+
+`2000silpeed/ekos-sap-knowledge-os`가 맡는 일은 다음과 같다.
+
+- 실행 가능한 EKOS 코드
+- 합성 데이터
+- 의미 모델 구현
+- Context Assembler
+- 검색 전용 기준선
+- EKOS 기반 답변 생성
+- 평가 하네스
+- 데모와 실행 가능한 예시
+
+North Star 문서는 구현이 무엇을 증명해야 하는지 설명할 수 있다. 하지만 North Star 안에 별도 `prototype/` 구조를 만들거나 기존 EKOS 저장소를 대체하는 설계를 만들면 안 된다.
 
 ### 권장 구축 순서
 
 ```text
-1. Glossary
-2. Synthetic data
-3. Semantic model
-4. Context assembler
-5. Retrieval-only baseline
-6. EKOS-backed answering
-7. Evaluation harness
-8. Execution boundary prototype
-9. Public demo
-10. Public case study
+1. North Star: Glossary and evaluation specification
+2. EKOS repository: Synthetic data
+3. EKOS repository: Semantic model
+4. EKOS repository: Context assembler
+5. EKOS repository: Retrieval-only baseline
+6. EKOS repository: EKOS-backed answering
+7. EKOS repository: Evaluation harness
+8. EKOS repository: Execution boundary prototype
+9. EKOS repository: Public demo
+10. North Star + EKOS repository: Public case study
 ```
+
+North Star 안에 로컬 프로토타입부터 만들지 않는다.
 
 에이전트부터 시작하지 않는다.
 
@@ -541,21 +573,21 @@ EKOS는 명확한 기준선과 비교되어야 한다.
 
 전체 자동화부터 시작하지 않는다.
 
-지속 가능한 기업 의미와 증거부터 시작한다.
+지속 가능한 기업 의미와 증거부터 시작하되, 구현은 기존 EKOS 저장소에서 진행한다.
 
 ### 버전 목표
 
-v0.1은 백서와 용어 사전이다. 백서 섹션을 작성하고, 글로서리 v1을 만들고, ADR을 업데이트한다.
+v0.1은 백서, 용어 사전, 저장소 경계 정리다. 백서 섹션을 작성하고, 글로서리 v1을 만들고, North Star와 EKOS 구현 저장소의 역할을 ADR로 고정한다.
 
-v0.2는 합성 데이터와 의미 모델이다. SAP 물류 지연 시나리오를 업무 객체와 관계로 표현한다.
+v0.2는 EKOS 구현 저장소에서 합성 데이터와 의미 모델을 정리한다. SAP 물류 지연 시나리오를 업무 객체와 관계로 표현한다.
 
-v0.3은 Context Assembler다. 객체 ID와 질문으로 EKOS 맥락을 조립한다.
+v0.3은 EKOS 구현 저장소의 Context Assembler다. 객체 ID와 질문으로 EKOS 맥락을 조립한다.
 
-v0.4는 검색 전용 기준선과 EKOS 답변 비교다.
+v0.4는 EKOS 구현 저장소에서 검색 전용 기준선과 EKOS 답변을 비교한다.
 
-v0.5는 반복 가능한 평가 리포트다.
+v0.5는 반복 가능한 평가 리포트다. North Star는 평가 기준과 해석을 보존하고, 실행 가능한 평가 산출물은 EKOS 구현 저장소에 둔다.
 
-v1.0은 공개 데모와 케이스 스터디다.
+v1.0은 공개 데모와 케이스 스터디다. 데모는 EKOS 구현 저장소에서 실행 가능해야 하고, North Star는 그 의미와 포트폴리오 설명을 정리한다.
 
 ---
 

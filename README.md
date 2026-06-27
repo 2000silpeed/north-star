@@ -3,13 +3,23 @@
 > Building one of the world's strongest Enterprise AI engineering portfolios.
 
 ## Mission
-Build production-quality, open engineering projects that help AI understand enterprise systems.
+Coordinate the research, strategy, and portfolio for production-quality open engineering projects that help AI understand enterprise systems.
 
 ## Vision
 Understanding Enterprise. Powering AI.
 
 ## North Star
-Create EKOS: enterprise intelligence infrastructure that turns business systems, processes, and evidence into a semantic foundation AI can reliably use.
+Define, explain, and steward EKOS: enterprise intelligence infrastructure that turns business systems, processes, and evidence into a semantic foundation AI can reliably use.
+
+## Repository Boundary
+North Star is the research memory, strategy, white paper, and portfolio headquarters for EKOS.
+
+It must not recreate EKOS implementation code or prototype structure inside this repository. The actual EKOS implementation remains in:
+
+- `2000silpeed/ekos-sap-knowledge-os`
+- `https://github.com/2000silpeed/ekos-sap-knowledge-os`
+
+When North Star discusses implementation, it should reference that existing EKOS repository and treat North Star documents as architecture, vocabulary, evaluation, and public narrative inputs.
 
 ## Guiding Principles
 - Enterprise First
@@ -42,5 +52,5 @@ Important ideas, decisions, and strategy changes must be recorded here so future
 - `docs/methodology/` - collaboration and continuity rules
 - `docs/glossary/` - durable EKOS terminology
 - `docs/principles/` - North Star operating principles
-- `roadmap/` - execution plans
+- `roadmap/` - cross-repository execution planning
 - `reviews/` - GitHub and portfolio reviews

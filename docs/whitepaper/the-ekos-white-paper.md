@@ -1867,128 +1867,134 @@ It does need to show that explicit enterprise meaning changes the quality of the
 
 ## 9. Implementation Roadmap
 
-The first EKOS implementation should be small, public-safe, and testable.
+The EKOS implementation roadmap is not a plan to recreate EKOS inside North Star.
 
-It should not start by connecting to a private enterprise system. It should not begin with full workflow automation. It should not try to model every SAP process.
+North Star is the research memory, strategy, white paper, and portfolio headquarters for EKOS. The executable EKOS implementation remains in `2000silpeed/ekos-sap-knowledge-os`.
 
-The first implementation should prove one thing:
+This roadmap should therefore be read as a cross-repository coordination plan. North Star defines the thesis, vocabulary, evaluation criteria, and public narrative. The EKOS implementation repository turns those specifications into code, data, tests, demos, and releases.
+
+The first EKOS implementation should still be small, public-safe, and testable. It should not start by connecting to private enterprise systems, full workflow automation, or every SAP process. It should prove one thing:
 
 > Explicit enterprise meaning improves AI understanding over retrieval alone.
 
-The roadmap below converts the EKOS white paper into a staged build plan.
+That proof belongs in the existing EKOS repository.
+
+### Repository Boundary
+North Star owns the durable reasoning around EKOS:
+
+- White paper drafts
+- ADRs
+- Glossary and concept definitions
+- Evaluation criteria
+- Public narrative and portfolio positioning
+- Cross-repository coordination notes
+
+`2000silpeed/ekos-sap-knowledge-os` owns the implementation:
+
+- Executable EKOS code
+- Synthetic or public-safe data
+- Semantic model implementation
+- Context assembly logic
+- Retrieval-only baseline
+- EKOS-backed answer generation
+- Evaluation harness
+- Demo surfaces and runnable walkthroughs
+
+North Star documents may propose what the implementation should prove. They should not prescribe a new local `prototype/` tree or duplicate the EKOS repository. Before proposing concrete implementation file paths, the existing EKOS repository structure should be inspected and followed.
 
 ### Roadmap Principles
-The implementation roadmap follows the design principles from Section 6.
+The implementation roadmap follows the design principles from Section 6 and adds one repository rule:
 
-- Start with the enterprise problem.
-- Use synthetic data.
-- Model meaning before retrieval.
-- Ground answers in evidence.
-- Keep execution read-only at first.
+- Do not recreate EKOS inside North Star.
+- Use the existing EKOS repository as the implementation home.
+- Treat North Star artifacts as specifications, not as a substitute codebase.
+- Link implementation issues and pull requests back to the relevant North Star white paper, ADR, glossary, or evaluation section.
+- Follow the current structure of `2000silpeed/ekos-sap-knowledge-os` before proposing new paths.
+- Start with synthetic data and read-only understanding.
 - Evaluate against a retrieval-only baseline.
-- Make every artifact public-safe and reviewable.
+- Make every public artifact reviewable and clear about its limits.
 
-### Phase 0: Repository Foundation
+### Phase 0: Cross-Repository Alignment
 Goal:
 
-Create the project structure needed to build EKOS in public.
+Align North Star and the EKOS implementation repository before adding implementation work.
 
-Core tasks:
+North Star tasks:
 
-1. Define repository layout.
-2. Keep white paper, ADRs, glossary, prototype, data, and evaluation separate.
-3. Add documentation rules for synthetic data and public-safe examples.
-4. Define how future decisions are recorded.
+1. Record the repository boundary in an ADR.
+2. Keep the white paper, glossary, and evaluation rubric in North Star.
+3. Link implementation-facing sections to `2000silpeed/ekos-sap-knowledge-os`.
+4. Avoid local prototype directories in North Star.
 
-Suggested artifacts:
+EKOS repository tasks:
 
-```text
-docs/
-  adr/
-  glossary/
-  whitepaper/
-  methodology/
-  research/
-
-prototype/
-  data/
-  semantic_model/
-  retrieval/
-  evaluation/
-  app/
-
-roadmap/
-reviews/
-```
+1. Inspect the existing repository structure.
+2. Map current implementation artifacts to the white paper concepts.
+3. Create implementation issues or milestones in the EKOS repository.
+4. Link those issues back to the relevant North Star documents.
 
 Exit criteria:
 
-- Repository has clear structure.
-- ADR-0001 exists.
-- White paper outline exists.
-- First sections of the white paper are drafted.
-- Future AI sessions can continue from documented state.
-
-Current status:
-
-- Mostly complete.
+- North Star clearly states that it is not the implementation repository.
+- The EKOS implementation repository is named wherever implementation work is discussed.
+- The next implementation tasks can be tracked in the EKOS repository without duplicating files in North Star.
 
 ### Phase 1: Enterprise Concept Glossary
 Goal:
 
-Define the core concepts EKOS uses before building the prototype.
+Define the core concepts EKOS uses before implementation work expands.
 
-Core tasks:
+North Star owns this phase as a specification artifact.
 
-1. Define business object.
-2. Define business process.
-3. Define event.
-4. Define evidence.
-5. Define policy.
-6. Define role.
-7. Define relationship.
-8. Define execution boundary.
-9. Define enterprise semantic model.
-10. Define enterprise intelligence infrastructure.
+Core terms:
 
-Suggested artifacts:
+1. Business object
+2. Business process
+3. Event
+4. Evidence
+5. Policy
+6. Role
+7. Relationship
+8. Execution boundary
+9. Enterprise semantic model
+10. Enterprise intelligence infrastructure
+
+North Star artifacts:
 
 ```text
-docs/glossary/business-object.md
-docs/glossary/business-process.md
-docs/glossary/event.md
-docs/glossary/evidence.md
-docs/glossary/policy.md
-docs/glossary/role.md
-docs/glossary/relationship.md
-docs/glossary/execution-boundary.md
-docs/glossary/enterprise-semantic-model.md
-docs/glossary/enterprise-intelligence-infrastructure.md
+docs/glossary/
 ```
+
+EKOS repository use:
+
+- Use the glossary as implementation vocabulary.
+- Align schema names, output fields, examples, and test cases with the glossary.
+- Do not maintain a competing concept vocabulary in the implementation repository without linking back to North Star.
 
 Exit criteria:
 
-- Every glossary term has a short definition, purpose, example, and non-example.
+- Every term has a short definition, purpose, example, and non-example.
 - The definitions match the white paper.
 - No term depends on private company data.
-- The glossary can be used as the vocabulary for the prototype.
+- The EKOS implementation repository can use the glossary as a shared vocabulary.
 
 ### Phase 2: Synthetic SAP Logistics Dataset
 Goal:
 
-Create a public-safe dataset for SAP logistics delay analysis.
+Create a public-safe dataset for SAP logistics delay analysis in the EKOS implementation repository.
 
-Core tasks:
+North Star provides:
 
-1. Create synthetic deliveries.
-2. Create synthetic shipments.
-3. Create synthetic freight orders.
-4. Create synthetic carrier events.
-5. Create synthetic customer commitments.
-6. Create synthetic exception tickets.
-7. Create synthetic policies.
-8. Create evidence records with timestamps and source references.
-9. Create multiple delay cases for evaluation.
+- Scenario requirements from Section 7
+- Evaluation expectations from Section 8
+- Public-safety constraints from Section 10
+
+The EKOS implementation repository owns:
+
+- Dataset files
+- Data generation or validation scripts
+- Case fixtures
+- Any runnable examples that consume the data
 
 Minimum case set:
 
@@ -1998,41 +2004,29 @@ Minimum case set:
 - Case D: False delay signal
 - Case E: Conflicting evidence
 
-Suggested artifacts:
-
-```text
-prototype/data/deliveries.json
-prototype/data/shipments.json
-prototype/data/freight_orders.json
-prototype/data/carrier_events.json
-prototype/data/customer_commitments.json
-prototype/data/exceptions.json
-prototype/data/policies.json
-prototype/data/evidence.json
-prototype/data/cases.json
-```
-
 Exit criteria:
 
 - Dataset includes at least five cases.
 - Every case has expected primary object, related objects, evidence path, and expected boundary.
 - Dataset is synthetic and explicitly marked as synthetic.
 - Data is small enough to review manually.
+- Implementation artifacts live in `2000silpeed/ekos-sap-knowledge-os`.
 
 ### Phase 3: Enterprise Semantic Model
 Goal:
 
-Turn synthetic records into connected enterprise meaning.
+Turn synthetic records into connected enterprise meaning in the EKOS implementation repository.
 
-Core tasks:
+North Star provides the conceptual model:
 
-1. Define object schemas.
-2. Define relationship types.
-3. Define lifecycle states.
-4. Define evidence links.
-5. Define policy applicability.
-6. Define execution boundary categories.
-7. Build a simple semantic graph or structured model.
+- Business objects
+- Relationship types
+- Lifecycle states
+- Evidence links
+- Policy applicability
+- Execution boundary categories
+
+The EKOS implementation repository owns the concrete representation. It may use JSON, SQLite, graph storage, typed code, or another structure, but the choice should follow the existing repository design rather than a new North Star layout.
 
 Initial relationship types:
 
@@ -2046,28 +2040,24 @@ Initial relationship types:
 - `POLICY_CONSTRAINS_ACTION`
 - `EVIDENCE_SUPPORTS_CLAIM`
 
-Suggested artifacts:
-
-```text
-prototype/semantic_model/schema.md
-prototype/semantic_model/relationships.md
-prototype/semantic_model/model.json
-prototype/semantic_model/examples.md
-```
-
 Exit criteria:
 
 - Each synthetic case can be represented as business objects and relationships.
 - The model can answer "what is connected to this delivery?"
 - Evidence can be linked to claims.
 - Policies can be linked to action boundaries.
+- The implementation is committed in the EKOS repository.
 
 ### Phase 4: EKOS Context Assembler
 Goal:
 
 Build the first EKOS component that assembles business context for a question.
 
-Core tasks:
+Implementation location:
+
+- `2000silpeed/ekos-sap-knowledge-os`
+
+Core behavior:
 
 1. Accept a user question and object ID.
 2. Identify the primary business object.
@@ -2093,14 +2083,6 @@ Policy: POL-Delay-Approval
 Boundary: AI may recommend and draft; manager approval required for commitment change
 ```
 
-Suggested artifacts:
-
-```text
-prototype/retrieval/context_assembler.py
-prototype/retrieval/examples.md
-prototype/retrieval/output_schema.json
-```
-
 Exit criteria:
 
 - Context assembler returns structured context.
@@ -2111,7 +2093,9 @@ Exit criteria:
 ### Phase 5: Retrieval-Only Baseline
 Goal:
 
-Build a fair baseline for comparison.
+Build a fair baseline for comparison in the EKOS implementation repository.
+
+North Star defines why the baseline matters. The EKOS repository implements it.
 
 Core tasks:
 
@@ -2120,14 +2104,6 @@ Core tasks:
 3. Retrieve relevant chunks for each evaluation question.
 4. Generate answers using retrieval-only context.
 5. Record baseline outputs.
-
-Suggested artifacts:
-
-```text
-prototype/baseline/documents/
-prototype/baseline/retrieval_baseline.py
-prototype/baseline/outputs/
-```
 
 Exit criteria:
 
@@ -2139,7 +2115,7 @@ Exit criteria:
 ### Phase 6: EKOS-Backed Answering
 Goal:
 
-Generate answers using EKOS-assembled context.
+Generate answers using EKOS-assembled context in the implementation repository.
 
 Core tasks:
 
@@ -2148,14 +2124,6 @@ Core tasks:
 3. Include evidence references.
 4. Include relationship paths.
 5. Include action boundary statements.
-
-Suggested artifacts:
-
-```text
-prototype/app/answer_generator.py
-prototype/app/prompts/
-prototype/app/sample_outputs/
-```
 
 Exit criteria:
 
@@ -2169,6 +2137,8 @@ Goal:
 
 Evaluate baseline and EKOS-backed outputs consistently.
 
+North Star owns the evaluation rubric as a specification. The EKOS implementation repository owns the runnable harness and reports.
+
 Core tasks:
 
 1. Implement the scoring rubric from Section 8.
@@ -2177,26 +2147,21 @@ Core tasks:
 4. Produce a structured evaluation report.
 5. Track failure modes.
 
-Suggested artifacts:
-
-```text
-prototype/evaluation/rubric.md
-prototype/evaluation/evaluate.py
-prototype/evaluation/cases.json
-prototype/evaluation/reports/
-```
-
 Exit criteria:
 
 - Evaluation can score all cases.
 - Report includes baseline score, EKOS score, and reviewer notes.
 - Failure modes are recorded.
-- Evaluation results guide next prototype changes.
+- Evaluation results guide implementation changes in the EKOS repository.
 
 ### Phase 8: Execution Boundary Prototype
 Goal:
 
 Add read-only execution boundary reasoning before live execution.
+
+Implementation location:
+
+- `2000silpeed/ekos-sap-knowledge-os`
 
 Core tasks:
 
@@ -2205,14 +2170,6 @@ Core tasks:
 3. Link policies to allowed actions.
 4. Add human approval requirements.
 5. Include boundary in answer output.
-
-Suggested artifacts:
-
-```text
-prototype/execution/boundaries.md
-prototype/execution/policy_rules.json
-prototype/execution/boundary_checker.py
-```
 
 Exit criteria:
 
@@ -2224,17 +2181,7 @@ Exit criteria:
 ### Phase 9: Public Demo
 Goal:
 
-Create a simple public demonstration of EKOS.
-
-Core tasks:
-
-1. Provide a CLI, notebook, or simple web app.
-2. Show one baseline answer.
-3. Show one EKOS-backed answer.
-4. Show relationship path.
-5. Show evidence chain.
-6. Show execution boundary.
-7. Include evaluation output.
+Create a simple public demonstration of EKOS from the implementation repository.
 
 Recommended first interface:
 
@@ -2245,67 +2192,56 @@ Reason:
 
 - The first demo should prove reasoning and evidence, not frontend polish.
 
-Suggested artifacts:
-
-```text
-prototype/app/demo_cli.py
-prototype/app/demo_notebook.ipynb
-docs/demo/walkthrough.md
-docs/demo/sample-output.md
-```
+North Star may host the public narrative and case-study text. The runnable demo belongs in `2000silpeed/ekos-sap-knowledge-os`.
 
 Exit criteria:
 
-- A reviewer can run or read the demo.
-- The demo explains why EKOS answer is better than baseline.
+- A reviewer can run or read the demo from the EKOS repository.
+- The demo explains why the EKOS-backed answer is better than the baseline.
 - The demo uses only synthetic data.
-- The demo can be linked from README.
+- North Star links to the demo rather than duplicating it.
 
 ### Phase 10: Public Case Study
 Goal:
 
 Turn the prototype into a public engineering artifact.
 
+North Star owns the narrative case study. The EKOS implementation repository owns the runnable evidence behind it.
+
 Core tasks:
 
-1. Write a case study.
-2. Explain the problem.
-3. Explain the architecture.
-4. Show synthetic data.
-5. Compare baseline and EKOS.
+1. Explain the problem.
+2. Explain the architecture.
+3. Link to the EKOS implementation repository.
+4. Show synthetic data assumptions.
+5. Compare baseline and EKOS-backed outputs.
 6. Discuss limitations.
 7. Explain next steps.
-
-Suggested artifacts:
-
-```text
-docs/case-study/sap-logistics-delay-analysis.md
-docs/case-study/evaluation-results.md
-docs/case-study/architecture-diagram.md
-```
 
 Exit criteria:
 
 - Case study is readable by enterprise AI engineers.
 - Claims are evidence-backed.
 - Limitations are explicit.
-- The case study can serve as portfolio material.
+- Implementation claims link to runnable artifacts in `2000silpeed/ekos-sap-knowledge-os`.
 
 ### Suggested Build Order
-The implementation should follow this order:
+The coordinated build should follow this order:
 
 ```text
-1. Glossary
-2. Synthetic data
-3. Semantic model
-4. Context assembler
-5. Retrieval-only baseline
-6. EKOS-backed answering
-7. Evaluation harness
-8. Execution boundary prototype
-9. Public demo
-10. Public case study
+1. North Star: glossary and evaluation specification
+2. EKOS repository: synthetic data
+3. EKOS repository: semantic model
+4. EKOS repository: context assembler
+5. EKOS repository: retrieval-only baseline
+6. EKOS repository: EKOS-backed answering
+7. EKOS repository: evaluation harness
+8. EKOS repository: execution boundary prototype
+9. EKOS repository: public demo
+10. North Star + EKOS repository: public case study
 ```
+
+Do not start by creating a local North Star prototype.
 
 Do not start with agents.
 
@@ -2313,35 +2249,37 @@ Do not start with live SAP integration.
 
 Do not start with full automation.
 
-Start with durable enterprise meaning and evidence.
+Start with durable enterprise meaning and evidence, then implement it in the existing EKOS repository.
 
-### Version Targets
-#### v0.1: Paper and Vocabulary
+### Coordination Milestones
+#### v0.1: Paper, Vocabulary, and Repository Boundary
 Goal:
 
-Complete the white paper draft and glossary.
+Complete the white paper draft, glossary, and repository-boundary ADR.
 
 Exit criteria:
 
 - White paper sections drafted
-- Glossary v1 created
+- Glossary v1 created in North Star
 - ADRs updated
+- Implementation work points to `2000silpeed/ekos-sap-knowledge-os`
 
 #### v0.2: Synthetic Data and Semantic Model
 Goal:
 
-Represent SAP logistics delay scenarios as business objects and relationships.
+Represent SAP logistics delay scenarios as business objects and relationships in the EKOS implementation repository.
 
 Exit criteria:
 
-- Synthetic dataset complete
-- Semantic model complete
+- Synthetic dataset complete in the EKOS repository
+- Semantic model complete in the EKOS repository
 - Relationship paths reviewable
+- North Star glossary referenced
 
 #### v0.3: Context Assembler
 Goal:
 
-Assemble EKOS context from object ID and question.
+Assemble EKOS context from object ID and question in the EKOS implementation repository.
 
 Exit criteria:
 
@@ -2356,8 +2294,8 @@ Compare retrieval-only and EKOS-backed answers.
 
 Exit criteria:
 
-- Baseline outputs generated
-- EKOS outputs generated
+- Baseline outputs generated in the EKOS repository
+- EKOS-backed outputs generated in the EKOS repository
 - Initial scoring completed
 
 #### v0.5: Evaluation Report
@@ -2370,6 +2308,7 @@ Exit criteria:
 - Rubric applied
 - Failure modes recorded
 - Evaluation report generated
+- North Star links to the report instead of duplicating runnable assets
 
 #### v1.0: Public Demo and Case Study
 Goal:
@@ -2378,9 +2317,9 @@ Publish the first coherent EKOS artifact.
 
 Exit criteria:
 
-- Demo available
-- Case study written
-- README updated
+- Demo available from the EKOS implementation repository
+- Case study written in or referenced from North Star
+- README links updated
 - White paper linked
 
 ---

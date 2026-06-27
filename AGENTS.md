@@ -5,6 +5,15 @@ You are working on Project North Star, the operating repository for building an 
 
 Treat this repository as a project headquarters, not a scratchpad.
 
+## Repository Boundary
+Do not recreate EKOS inside North Star.
+
+North Star is the research memory, strategy, white paper, and portfolio headquarters for EKOS. The actual EKOS implementation remains in `2000silpeed/ekos-sap-knowledge-os`:
+
+- `https://github.com/2000silpeed/ekos-sap-knowledge-os`
+
+When writing implementation sections, reference the existing EKOS repository instead of designing a separate replacement system in this repository. North Star may define architecture, glossary terms, evaluation criteria, public narrative, ADRs, and portfolio strategy. Executable code, prototype data, implementation structure, and runnable demos belong in the EKOS implementation repository unless the user explicitly says otherwise.
+
 ## Required Reading
 Before making strategic, architectural, or documentation changes, read:
 
@@ -24,8 +33,9 @@ Do not leave important reasoning only in conversation. If a decision affects EKO
 - White paper drafts: `docs/whitepaper/`
 - Session history and working memory: `docs/diary/`
 - Portfolio and GitHub reviews: `reviews/`
-- Roadmap and execution planning: `roadmap/`
+- Roadmap and cross-repository execution planning: `roadmap/`
 - Terms and concept definitions: `docs/glossary/`
+- EKOS implementation: `2000silpeed/ekos-sap-knowledge-os`
 
 ## Decision Rules
 - Every major claim must answer "Why?"
@@ -52,5 +62,5 @@ The immediate project priority is to turn EKOS from an idea into a coherent publ
 3. Expand the EKOS White Paper from `docs/whitepaper/ekos-white-paper-outline.md`.
 4. Maintain the assembled white paper draft at `docs/whitepaper/the-ekos-white-paper.md`.
 5. Review the Korean understanding version at `docs/whitepaper-ko/the-ekos-white-paper-ko.md`.
-6. Start Phase 1: Enterprise Concept Glossary.
+6. Start Phase 1: Enterprise Concept Glossary as a North Star specification artifact.
 7. Connect all existing projects to the EKOS narrative or archive them.
