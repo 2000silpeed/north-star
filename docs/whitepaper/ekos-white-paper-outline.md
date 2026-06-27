@@ -2,7 +2,7 @@
 
 Date: 2026-06-27
 
-Status: Draft outline with Sections 1-5 started
+Status: Draft outline with Sections 1-6 started
 
 ## Purpose
 This document defines the structure for the first EKOS white paper.
@@ -142,6 +142,10 @@ Principles:
 - Execution must have boundaries
 - AI should consume enterprise intelligence, not own it
 
+Draft:
+
+- `docs/whitepaper/sections/06-design-principles.md`
+
 ### 7. Prototype Scenario
 Use a concrete workflow instead of an abstract demo.
 
@@ -223,4 +227,4 @@ EKOS exists to make that meaning explicit, connected, reviewable, and reusable.
 - Minimal working prototype or executable walkthrough
 
 ## Next Writing Task
-Draft Section 6: "Design Principles."
+Draft Section 7: "Prototype Scenario."
