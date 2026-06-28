@@ -20,3 +20,15 @@ Use these notes to understand how EKOS's philosophy evolved over time.
 
 - `001-core-idea.md` - EKOS is about preserving enterprise meaning, not defending graphs, ontology, RAG, or agents.
 - `002-enterprise-trust.md` - Enterprise meaning preservation enables consistency, and consistency enables enterprise trust.
+- `003-universal-enterprise-intelligence.md` - Foundation models should specialize in universal intelligence; enterprises should own enterprise intelligence; EKOS connects the two.
+
+## Current Philosophy Stack
+
+```text
+Universal Intelligence
+  -> Enterprise Intelligence
+  -> Enterprise Meaning
+  -> Enterprise Consistency
+  -> Enterprise Trust
+  -> Enterprise AI Adoption
+```
