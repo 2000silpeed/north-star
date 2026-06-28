@@ -1,4 +1,4 @@
-# EKOS Design Review Archive
+# EKOS Design Review Notes
 
 This directory preserves design review notes that emerge while explaining, defending, and challenging EKOS.
 
@@ -15,3 +15,8 @@ They record:
 The archive exists because EKOS improves not only through code, benchmarks, and white paper edits, but also through hard questions that clarify the problem.
 
 Use these notes to understand how EKOS's philosophy evolved over time.
+
+## Notes
+
+- `001-core-idea.md` - EKOS is about preserving enterprise meaning, not defending graphs, ontology, RAG, or agents.
+- `002-enterprise-trust.md` - Enterprise meaning preservation enables consistency, and consistency enables enterprise trust.

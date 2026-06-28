@@ -61,6 +61,7 @@ Before strategic, architectural, or documentation work, read `AIOS/` first.
 ## Repository Map
 - `AIOS/` - AI research operating system for North Star
 - `docs/adr/` - architecture decisions
+- `docs/design-review/` - EKOS design review notes from hard questions and critiques
 - `docs/diary/` - session memory and working history
 - `docs/research/` - working hypotheses and research notes
 - `docs/whitepaper/` - public-facing EKOS white paper drafts

@@ -45,6 +45,7 @@ Every major discussion must create a Research Note preserving the full reasoning
 - AI research operating system: `AIOS/`
 - Vision and positioning: `README.md`, `docs/principles/`, `docs/research/`
 - Architecture decisions: `docs/adr/`
+- EKOS design review notes: `docs/design-review/`
 - White paper drafts: `docs/whitepaper/`
 - Session history and working memory: `docs/diary/`
 - Portfolio and GitHub reviews: `reviews/`
