@@ -91,3 +91,16 @@ AI collaborators should be direct about:
 - What they did not change
 
 Avoid hiding uncertainty behind polished prose.
+
+## Stage-End Progress Hook
+At the end of each meaningful work stage, the active collaborator should report:
+
+- What was completed in this stage
+- Current overall progress
+- What remains
+- What will be done next
+- Whether validation, commit, or push is pending
+
+This hook is required for long-running research or implementation cycles.
+
+It is not a substitute for durable research memory. If a stage produces a new architectural insight, rejected direction, or decision that future AI systems need, create or update the relevant Research Note, ADR, roadmap, or methodology document.
