@@ -79,23 +79,34 @@ North Star already has the core research assets needed to move from thesis to re
 
 The biggest weakness is no longer lack of narrative.
 
-The biggest weakness is that EKOS still needs a pre-registered validation path that can be executed in `2000silpeed/ekos-sap-knowledge-os` and interpreted back in North Star.
+The biggest weakness is no longer the absence of a first validation path.
+
+The first benchmark specification now exists in North Star, and CASE-001 through CASE-010 have runnable smoke implementations in `2000silpeed/ekos-sap-knowledge-os`.
+
+The current weakness is evidence independence:
+
+- The cases are synthetic smoke benchmarks.
+- The baseline suite still lacks a workflow-specific context assembler baseline.
+- CASE-010 prompt/model stability is deterministic simulation, not live model evidence.
+- Independent utility metrics are proxy metrics, not domain-reviewer measurements.
+
+The current result interpretation is recorded in `docs/research/2026-06-28-ekos-benchmark-results-001-010.md`.
 
 ## Highest-Leverage Next Improvement
 
 The single highest-leverage next task is:
 
-> Create the EKOS benchmark specification that turns the validation matrix and falsification strategy into an executable research contract.
+> Define the next validation cycle that closes the largest evidence gaps exposed by CASE-001 through CASE-010.
 
 This has higher leverage than glossary expansion, white paper rewriting, AIOS expansion, or portfolio work because:
 
-- It directly tests the central EKOS thesis.
-- It addresses the hostile review's strongest objections: weak baselines, circular metrics, missing thresholds, and no rejection plan.
-- It gives the EKOS implementation repository a concrete target without creating implementation inside North Star.
-- It forces ambiguous concepts to become measurable only where measurement needs them.
-- It creates the bridge between research memory and empirical evidence.
+- CASE-001 through CASE-010 already provide a repeatable first-pass signal.
+- The current strongest objection is no longer "no benchmark exists"; it is that the benchmark still depends on synthetic fixtures, deterministic proxy metrics, and an incomplete baseline suite.
+- A workflow-specific context assembler baseline could narrow or invalidate the EKOS necessity claim.
+- Live model or reviewer-based runs could reveal whether the deterministic proxy wins hold outside the harness.
+- The next handoff should tell the EKOS implementation repository exactly which missing evidence would most strengthen or falsify EKOS.
 
-Until this benchmark specification exists, more white paper work risks becoming persuasion instead of research.
+Until these evidence gaps are closed, more white paper work risks becoming persuasion instead of research.
 
 ## Operating Cycle
 
@@ -317,32 +328,19 @@ If two tasks compete, choose the one that improves the next empirical test of EK
 
 ## Immediate Next Task
 
-Create:
+Use the CASE-001 through CASE-010 result interpretation to define the next validation cycle.
 
-```text
-docs/research/ekos-benchmark-specification.md
-```
+The next North Star task should not be more white paper writing.
 
-The document should translate:
+It should produce a focused research handoff that answers:
 
-- `docs/research/ekos-validation-matrix.md`
-- `docs/reviews/review-001-hostile-review.md`
-- `docs/reviews/falsification-strategy.md`
-- `docs/glossary/glossary-roadmap.md`
-
-into a benchmark specification for the EKOS implementation repository.
+- Which missing baseline most threatens the current EKOS result?
+- Which deterministic proxy metrics must become live-run or human-review metrics?
+- Which EKOS claims are supported only by synthetic smoke evidence?
+- Which claim should be narrowed if a workflow-specific baseline ties EKOS?
+- What exactly should `2000silpeed/ekos-sap-knowledge-os` implement next?
 
 Do not create runnable code, sample data, app files, or implementation directories in North Star.
-
-The benchmark specification should answer:
-
-- What exactly is being tested?
-- Which claims does each test cover?
-- What baselines must EKOS beat?
-- What would count as a tie?
-- What would count as failure?
-- What would force a claim revision?
-- What results should the EKOS repository report back?
 
 ## Current Working Principle
 
