@@ -1,4 +1,4 @@
-# EKOS Interview Notes #1
+# EKOS Design Review Note #1
 
 ## The Day EKOS's Core Idea Became Clear
 
@@ -6,7 +6,7 @@
 
 ---
 
-# Why This Interview Matters
+# Why This Design Review Matters
 
 Today's discussion was not simply interview practice.
 
@@ -20,7 +20,7 @@ Originally, EKOS was often described using implementation terms:
 * SHACL
 * Enterprise Knowledge Graph
 
-During the interview it became clear that these are **implementation choices**, not the core idea.
+During the review it became clear that these are **implementation choices**, not the core idea.
 
 The real question EKOS tries to solve is much simpler.
 
@@ -65,7 +65,7 @@ EKOS is an attempt to preserve enterprise meaning in a durable form.
 
 ---
 
-# The Most Important Interview Lesson
+# The Most Important Design Review Lesson
 
 When asked
 
@@ -154,9 +154,9 @@ Everything else follows from it.
 
 ---
 
-# Interview Mindset Going Forward
+# Design Review Mindset Going Forward
 
-Future interview preparation should not focus on memorizing answers.
+Future design reviews should not focus on memorizing answers.
 
 Instead, every difficult question should strengthen EKOS itself.
 
