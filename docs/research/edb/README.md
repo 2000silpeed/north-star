@@ -50,6 +50,7 @@ North Star owns:
 5. `005-benchmark-cases.md` — define CASE-011 through CASE-015.
 6. `006-live-model-comparison.md` — define EDB Phase 2: live commercial model comparison using one prompt, one schema, and the existing scorer.
 7. `007-live-model-runner-implementation.md` — record EKOS Issue #3 implementation, verification, and remaining live-run limits.
+8. `008-cli-agent-preliminary-run.md` — record the Claude Code / Codex CLI preliminary runner and one CASE-011~015 execution.
 
 ---
 
