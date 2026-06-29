@@ -52,6 +52,7 @@ North Star owns:
 7. `007-live-model-runner-implementation.md` — record EKOS Issue #3 implementation, verification, and remaining live-run limits.
 8. `008-cli-agent-preliminary-run.md` — record the Claude Code / Codex CLI preliminary runner and one CASE-011~015 execution.
 9. `009-real-model-data-r5.md` — record the first 5-run real data collection across Claude Code CLI, Codex CLI, and Gemini 2.5 Flash API.
+10. `010-consistency-stress-test-plan.md` — record EKOS Issue #4 implementation and the first consistency analysis over R5 real-model data.
 
 ---
 
@@ -74,6 +75,15 @@ Safe delegation depends on explicit business context, not only model capability.
 Internal deterministic baselines are not enough to make a strong external research claim.
 
 EDB must compare EKOS against live commercial model outputs using the same prompt, schema, and scorer before public claims about superiority become persuasive.
+
+### H5 — Correct Delegation Level Is Not Enough
+
+R5 data showed that Claude Code CLI, Codex CLI, and Gemini 2.5 Flash can keep
+`maximum_safe_delegation_level` stable across CASE-011 through CASE-015.
+
+The current stronger hypothesis is that enterprise delegation quality also
+depends on consistency of evidence, policy, blocking-risk, reversibility,
+confidence, and audit fields.
 
 ---
 
