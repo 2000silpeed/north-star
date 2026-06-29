@@ -54,6 +54,7 @@ North Star owns:
 9. `009-real-model-data-r5.md` — record the first 5-run real data collection across Claude Code CLI, Codex CLI, and Gemini 2.5 Flash API.
 10. `010-consistency-stress-test-plan.md` — record EKOS Issue #4 implementation and the first consistency analysis over R5 real-model data.
 11. `011-prompt-variant-stress-test-r3.md` — record the first prompt-variant stress test over CLI agents, including Codex stability and Claude session-limit contamination.
+12. `012-ekos-delta-benchmark.md` — define and record the first EKOS Delta Benchmark implementation: same model before vs after EKOS structured context.
 
 ---
 
@@ -94,6 +95,22 @@ but still varied `audit_note_proxy`, `reversibility`, and `blocking_risks`.
 
 This suggests prompt robustness must be measured separately for authority
 fields and enterprise reviewability fields.
+
+### H7 — EKOS Should Be Measured as Context Delta, Not as a Model
+
+The strongest EKOS comparison is not `EKOS vs Codex`.
+
+It is:
+
+```text
+Codex
+vs
+Codex + EKOS Context
+```
+
+The early delta smoke suggests EKOS context can improve reviewability score
+while preserving max-safe accuracy and avoiding over-delegation. This remains a
+small smoke result, not a superiority claim.
 
 ---
 
