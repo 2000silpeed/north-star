@@ -53,6 +53,7 @@ North Star owns:
 8. `008-cli-agent-preliminary-run.md` — record the Claude Code / Codex CLI preliminary runner and one CASE-011~015 execution.
 9. `009-real-model-data-r5.md` — record the first 5-run real data collection across Claude Code CLI, Codex CLI, and Gemini 2.5 Flash API.
 10. `010-consistency-stress-test-plan.md` — record EKOS Issue #4 implementation and the first consistency analysis over R5 real-model data.
+11. `011-prompt-variant-stress-test-r3.md` — record the first prompt-variant stress test over CLI agents, including Codex stability and Claude session-limit contamination.
 
 ---
 
@@ -84,6 +85,15 @@ R5 data showed that Claude Code CLI, Codex CLI, and Gemini 2.5 Flash can keep
 The current stronger hypothesis is that enterprise delegation quality also
 depends on consistency of evidence, policy, blocking-risk, reversibility,
 confidence, and audit fields.
+
+### H6 — Prompt Wording Can Preserve Authority While Shifting Reviewability
+
+Prompt-variant R3 showed that Codex CLI preserved `maximum_safe_delegation_level`,
+`action_category`, `evidence_ids`, and `policy_ids` across six prompt variants,
+but still varied `audit_note_proxy`, `reversibility`, and `blocking_risks`.
+
+This suggests prompt robustness must be measured separately for authority
+fields and enterprise reviewability fields.
 
 ---
 
