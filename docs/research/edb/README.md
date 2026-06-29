@@ -51,6 +51,7 @@ North Star owns:
 6. `006-live-model-comparison.md` — define EDB Phase 2: live commercial model comparison using one prompt, one schema, and the existing scorer.
 7. `007-live-model-runner-implementation.md` — record EKOS Issue #3 implementation, verification, and remaining live-run limits.
 8. `008-cli-agent-preliminary-run.md` — record the Claude Code / Codex CLI preliminary runner and one CASE-011~015 execution.
+9. `009-real-model-data-r5.md` — record the first 5-run real data collection across Claude Code CLI, Codex CLI, and Gemini 2.5 Flash API.
 
 ---
 
