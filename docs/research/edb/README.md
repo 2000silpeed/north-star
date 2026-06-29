@@ -48,6 +48,7 @@ North Star owns:
 3. `003-metrics.md` — define safety, utility, and delegatability metrics.
 4. `004-protocol.md` — define benchmark execution and scoring protocol.
 5. `005-benchmark-cases.md` — define CASE-011 through CASE-015.
+6. `006-live-model-comparison.md` — define EDB Phase 2: live commercial model comparison using one prompt, one schema, and the existing scorer.
 
 ---
 
@@ -64,6 +65,12 @@ Enterprise delegation can be evaluated independently from raw answer accuracy.
 ### H3 — Business Context Enables Delegation
 
 Safe delegation depends on explicit business context, not only model capability.
+
+### H4 — Live Model Comparison Is Required
+
+Internal deterministic baselines are not enough to make a strong external research claim.
+
+EDB must compare EKOS against live commercial model outputs using the same prompt, schema, and scorer before public claims about superiority become persuasive.
 
 ---
 
