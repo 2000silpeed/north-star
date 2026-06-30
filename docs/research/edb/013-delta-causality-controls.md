@@ -146,6 +146,97 @@ causal value. The next evidence step is to run the real Codex CLI negative
 control and inspect whether `Generic Context -> EKOS Context` remains positive
 without increasing over-delegation or hard failures.
 
+Real Codex CLI R5 result:
+
+```bash
+python -m ekos benchmark negative-control \
+  --system codex-cli \
+  --cases CASE-011,CASE-012,CASE-013,CASE-014,CASE-015 \
+  --prompt-variants baseline,audit-emphasis \
+  --runs 5 \
+  --out out/edb-negative-control-codex-2026-06-30-r5
+```
+
+Local result artifact:
+
+```text
+out/edb-negative-control-codex-2026-06-30-r5/
+```
+
+Pair alignment:
+
+```text
+50/50 aligned triplets
+```
+
+All-triplet result:
+
+| Metric | Model | Generic Context | EKOS Context |
+| --- | ---: | ---: | ---: |
+| Total score | 18.520 | 18.260 | 19.060 |
+| Max-safe accuracy | 1.000 | 0.980 | 0.980 |
+| Over-delegation rate | 0.000 | 0.000 | 0.000 |
+| Blocking risk stability | 0.800 | 0.900 | 1.000 |
+| Reversibility stability | 0.900 | 0.700 | 1.000 |
+| Audit proxy stability | 0.300 | 0.300 | 0.400 |
+| Critical-field stability | 0.889 | 0.878 | 0.933 |
+
+Delta comparisons:
+
+| Comparison | Score delta | Reviewability delta | Consistency delta | Safety delta | Utility delta | Enterprise delta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Model -> Generic Context | -0.260 | -0.008 | -0.011 | -0.013 | -0.020 | -0.013 |
+| Generic Context -> EKOS Context | 0.800 | 0.067 | 0.056 | 0.000 | 0.000 | 0.032 |
+| Model -> EKOS Context | 0.540 | 0.058 | 0.044 | -0.013 | -0.020 | 0.019 |
+
+Availability and parsing:
+
+| Condition | Records | Parse failures | Runner errors |
+| --- | ---: | ---: | ---: |
+| Model | 50 | 0 | 0 |
+| Generic Context | 50 | 0 | 1 |
+| EKOS Context | 50 | 0 | 1 |
+
+Runner errors:
+
+| Condition | Case | Variant | Run | Error |
+| --- | --- | --- | ---: | --- |
+| Generic Context | CASE-015 | baseline | 3 | timeout after 300 seconds |
+| EKOS Context | CASE-011 | baseline | 4 | timeout after 300 seconds |
+
+Clean-triplet view excluding any triplet with a parse or runner error:
+
+| View | Triplets | Model | Generic Context | EKOS Context |
+| --- | ---: | ---: | ---: | ---: |
+| All triplets | 50 | 18.520 | 18.260 | 19.060 |
+| Clean triplets | 48 | 18.562 | 18.583 | 19.417 |
+
+Clean-triplet score deltas:
+
+| Comparison | Delta |
+| --- | ---: |
+| Model -> Generic Context | 0.021 |
+| Generic Context -> EKOS Context | 0.833 |
+| Model -> EKOS Context | 0.854 |
+
+Interpretation:
+
+```text
+The real Codex CLI negative-control run strengthens the EKOS-specific delta
+hypothesis. Generic structured context did not explain the improvement; in the
+all-triplet view it slightly underperformed the model-only condition. EKOS
+context improved over generic context on total score, reviewability, and
+critical-field stability without increasing over-delegation.
+```
+
+The claim still needs discipline:
+
+```text
+This is CLI-agent evidence, not clean provider API evidence. It supports a
+stronger EKOS-specific hypothesis under the tested Codex CLI conditions, but it
+does not yet prove provider-independent causal value.
+```
+
 ---
 
 ## 2. Ablation Study
