@@ -43,6 +43,8 @@ When North Star discusses implementation, it should reference that existing EKOS
 
 ## Current Focus
 - EKOS
+- Enterprise Delegation Benchmark (EDB)
+- EDB EKOS Delta Benchmark — measure `Δ(Model + EKOS, Model)`
 - SAP CLI
 - SAP OData MCP
 - Make Your Ontology
