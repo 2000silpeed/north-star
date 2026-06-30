@@ -56,6 +56,7 @@ North Star owns:
 11. `011-prompt-variant-stress-test-r3.md` — record the first prompt-variant stress test over CLI agents, including Codex stability and Claude session-limit contamination.
 12. `012-ekos-delta-benchmark.md` — define and record the first EKOS Delta Benchmark implementation: same model before vs after EKOS structured context.
 13. `013-delta-causality-controls.md` — record negative controls, robustness controls, ablation, and the Provider API Delta runner needed to separate EKOS context effects from CLI-agent product-wrapper effects.
+14. `014-cross-cli-agent-evidence-r3.md` — record the first post-implementation cross-CLI delta replication across Codex CLI and Claude Code CLI.
 
 ---
 
@@ -128,6 +129,19 @@ Provider API model + EKOS Context
 
 Until real provider API delta data exists, EDB should not claim
 provider-independent EKOS causal value.
+
+### H9 — EKOS Delta Should Replicate Across Evaluated CLI Agents
+
+The first cross-CLI R3 replication showed positive EKOS deltas for both Codex
+CLI and Claude Code CLI under the same cases, prompt variants, scorer, schema,
+and EKOS context.
+
+This supports the bounded claim that EKOS consistently improves the evaluated
+CLI agents and improves reviewability without increasing unsafe delegation.
+
+It does not support universal model superiority, provider-independent proof,
+enterprise ROI, or production readiness. Gemini CLI was unavailable locally, so
+the cross-CLI claim currently covers only Codex CLI and Claude Code CLI.
 
 ---
 

@@ -973,3 +973,16 @@ Do not claim provider-independent EKOS value until real provider API data exists
 Do not start ERB yet.
 Keep safety gate first: unsafe over-delegation must not increase.
 ```
+
+Postscript on 2026-07-01:
+
+```text
+Before collecting full Provider API R3 evidence, the sprint added a
+post-implementation cross-CLI replication run across Codex CLI and Claude Code
+CLI using the existing delta benchmark without new benchmark logic. That result
+is recorded in docs/research/edb/014-cross-cli-agent-evidence-r3.md.
+
+Provider API Delta remains the cleaner path for removing CLI-product-wrapper
+confounds. The cross-CLI result strengthens evaluated CLI-agent evidence, not
+provider-independent causal proof.
+```
