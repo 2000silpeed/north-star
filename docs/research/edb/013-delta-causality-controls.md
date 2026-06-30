@@ -264,6 +264,78 @@ EKOS implementation issue:
 
 - `2000silpeed/ekos-sap-knowledge-os#9`
 
+Implementation result:
+
+```text
+Status: implemented in EKOS
+Command: python -m ekos benchmark delta-ablation
+```
+
+The EKOS implementation now supports component ablation over EKOS structured
+context. The default variants are:
+
+```text
+full
+no-evidence
+no-policy
+no-relationship-paths
+no-process-state
+no-authority-boundary
+```
+
+The implementation also made `relationship_paths` an explicit field in full
+EKOS context so the `no-relationship-paths` variant can remove a real component
+rather than a placeholder.
+
+The runner exports:
+
+```text
+full/results.json
+full/results.csv
+<ablation-variant>/results.json
+<ablation-variant>/results.csv
+ablation_delta.json
+ablation_delta.csv
+summary.md
+raw/
+```
+
+The report records:
+
+```text
+score_drop_from_full
+reviewability_drop_from_full
+consistency_drop_from_full
+safety_drop_from_full
+over_delegation_rate_increase
+hard_fail_rate_increase
+not_yet_supported_components
+```
+
+Mock validation result:
+
+```text
+585 passed, 2 skipped
+```
+
+The mock smoke path verifies mechanics only:
+
+```text
+full > no-evidence
+full == no-process-state
+```
+
+This is deliberate. It proves that the report can both detect a component whose
+removal hurts performance and flag a component whose removal has no measurable
+effect under the tested cases.
+
+Important limitation:
+
+The ablation runner is a falsification tool. A component listed under
+`not_yet_supported_components` is not proven useless in general. It means the
+current EDB cases and runner did not show measurable degradation when that
+component was removed.
+
 ---
 
 ## 3. Provider API Delta
