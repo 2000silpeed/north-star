@@ -237,6 +237,197 @@ stronger EKOS-specific hypothesis under the tested Codex CLI conditions, but it
 does not yet prove provider-independent causal value.
 ```
 
+### 1.1 Negative Control Robustness
+
+The first negative-control result answered one objection:
+
+```text
+Generic JSON source notes did not explain the EKOS delta.
+```
+
+It did not answer the stronger objection:
+
+```text
+Maybe a different non-EKOS structured format would produce the same gain.
+```
+
+EKOS implementation issue:
+
+- `2000silpeed/ekos-sap-knowledge-os#11`
+
+Implementation result:
+
+```text
+Status: implemented in EKOS
+Command: python -m ekos benchmark negative-control-robustness
+```
+
+The EKOS implementation now compares:
+
+```text
+Model only
+Model + generic-json
+Model + generic-yaml
+Model + generic-markdown
+Model + generic-table
+Model + generic-tree
+Model + EKOS structured context
+```
+
+The generic controls are deliberately not EKOS. They may organize source facts,
+object references, snippets, simple key-value facts, and generic summaries.
+They must not contain EKOS authority mapping, evidence-to-authority mapping,
+policy-boundary interpretation, completed DelegationDecisionContract fields,
+blocking-risk interpretation, reversibility classification, or gold labels.
+
+The runner exports:
+
+```text
+before/results.json
+<generic-variant>/results.json
+<generic-variant>/results.csv
+after/results.json
+after/results.csv
+robustness_delta.json
+robustness_delta.csv
+summary.md
+raw/
+```
+
+It reports:
+
+```text
+Model -> each Generic Context delta
+each Generic Context -> EKOS Context delta
+best Generic Context -> EKOS Context delta
+average Generic Context -> EKOS Context delta
+over-delegation comparison
+parse/runner errors
+interpretation label
+```
+
+Mock validation result:
+
+```text
+589 passed, 2 skipped
+```
+
+Mock smoke result:
+
+```text
+Model < each Generic Context < EKOS Context
+```
+
+The mock result validates mechanics only. It does not prove real-model behavior.
+
+Real Codex CLI R3 result:
+
+```bash
+python -m ekos benchmark negative-control-robustness \
+  --system codex-cli \
+  --cases CASE-011,CASE-012,CASE-013,CASE-014,CASE-015 \
+  --runs 3 \
+  --prompt-variants baseline,audit-emphasis \
+  --out out/edb-negative-control-robustness-codex-r3
+```
+
+Local result artifact:
+
+```text
+out/edb-negative-control-robustness-codex-r3/
+```
+
+Pair alignment:
+
+```text
+30/30 aligned condition sets
+```
+
+All-pair result:
+
+| Metric | Model | generic-json | generic-yaml | generic-markdown | generic-table | generic-tree | EKOS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Total score | 18.767 | 17.833 | 18.433 | 17.933 | 18.500 | 18.467 | 19.467 |
+| Max-safe accuracy | 1.000 | 0.967 | 1.000 | 0.967 | 1.000 | 1.000 | 1.000 |
+| Over-delegation rate | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| Blocking risk stability | 0.900 | 0.800 | 0.900 | 1.000 | 0.900 | 0.900 | 1.000 |
+| Reversibility stability | 0.800 | 0.800 | 0.800 | 0.800 | 0.800 | 0.700 | 1.000 |
+| Audit proxy stability | 0.400 | 0.800 | 0.200 | 0.000 | 0.400 | 0.200 | 0.300 |
+| Critical-field stability | 0.900 | 0.933 | 0.878 | 0.867 | 0.900 | 0.867 | 0.922 |
+| Parse failure rate | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| Runner error rate | 0.000 | 0.033 | 0.000 | 0.033 | 0.000 | 0.000 | 0.000 |
+
+Generic-to-EKOS deltas:
+
+| Generic control | Score delta | Reviewability delta | Safety delta | Enterprise delta |
+| --- | ---: | ---: | ---: | ---: |
+| generic-json | 1.633 | 0.114 | 0.022 | 0.048 |
+| generic-yaml | 1.033 | 0.086 | 0.000 | 0.036 |
+| generic-markdown | 1.533 | 0.106 | 0.022 | 0.059 |
+| generic-table | 0.967 | 0.081 | 0.000 | 0.030 |
+| generic-tree | 1.000 | 0.083 | 0.000 | 0.038 |
+
+Best and average generic comparisons:
+
+| Comparison | Score delta | Reviewability delta | Consistency delta | Safety delta | Utility delta | Enterprise delta |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Best Generic -> EKOS (`generic-table`) | 0.967 | 0.081 | 0.022 | 0.000 | 0.000 | 0.030 |
+| Average Generic -> EKOS | 1.233 | 0.094 | 0.033 | 0.009 | 0.013 | 0.042 |
+
+Availability and parsing:
+
+| Condition | Records | Parse failures | Runner errors |
+| --- | ---: | ---: | ---: |
+| Model | 30 | 0 | 0 |
+| generic-json | 30 | 0 | 1 |
+| generic-yaml | 30 | 0 | 0 |
+| generic-markdown | 30 | 0 | 1 |
+| generic-table | 30 | 0 | 0 |
+| generic-tree | 30 | 0 | 0 |
+| EKOS | 30 | 0 | 0 |
+
+Runner errors:
+
+| Condition | Case | Variant | Run | Error |
+| --- | --- | --- | ---: | --- |
+| generic-json | CASE-014 | audit-emphasis | 1 | timeout after 300 seconds |
+| generic-markdown | CASE-015 | audit-emphasis | 0 | timeout after 300 seconds |
+
+Clean-pair view excluding any condition set with a parse or runner error:
+
+| View | Pairs | Model | generic-json | generic-yaml | generic-markdown | generic-table | generic-tree | EKOS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| All pairs | 30 | 18.767 | 17.833 | 18.433 | 17.933 | 18.500 | 18.467 | 19.467 |
+| Clean pairs | 28 | 18.679 | 18.393 | 18.393 | 18.357 | 18.500 | 18.464 | 19.464 |
+
+Clean-pair Generic-to-EKOS score deltas:
+
+| Generic control | Delta |
+| --- | ---: |
+| generic-json | 1.071 |
+| generic-yaml | 1.071 |
+| generic-markdown | 1.107 |
+| generic-table | 0.964 |
+| generic-tree | 1.000 |
+
+Interpretation:
+
+```text
+The Codex CLI R3 robustness run supports an EKOS-specific win against the
+evaluated generic structured-context baselines. EKOS outperformed every generic
+format in both the all-pair view and the clean-pair view, with no unsafe
+over-delegation increase.
+```
+
+The claim remains bounded:
+
+```text
+This is still CLI-agent evidence, not provider-independent model evidence.
+The result supports the phrase "EKOS-specific win against the evaluated generic
+structured-context baselines." It does not prove universal EKOS superiority,
+production readiness, or provider-independent causal value.
+```
+
 ---
 
 ## 2. Ablation Study
