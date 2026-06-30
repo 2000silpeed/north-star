@@ -799,6 +799,77 @@ availability, and response behavior. It does not prove business ROI,
 production readiness, or universal EKOS superiority.
 ```
 
+### 3.1 Z.ai / GLM Provider Extension
+
+After the initial Provider API Delta runner, EKOS added a Z.ai provider adapter:
+
+```text
+EKOS commit: b24485e
+Provider id: zai
+Target model id tested: glm-5.2
+Default key env: ZHIPU_API_KEY
+Endpoint: https://api.z.ai/api/paas/v4/chat/completions
+```
+
+Why this matters:
+
+```text
+Z.ai GLM is another provider-side model surface that can help test whether the
+EKOS delta survives outside Codex CLI and outside the first three provider
+families.
+```
+
+Implementation notes:
+
+```text
+The Z.ai adapter uses the OpenAI-compatible Chat Completions API, not OpenAI's
+Responses API. It requests JSON output with response_format=json_object,
+disables thinking for benchmark determinism, and records raw responses through
+the same EDB result schema.
+```
+
+The local machine had a stored `ZHIPU_API_KEY` in another project:
+
+```text
+/Users/sungwoon/ai-projects/youtube-auto/remotion-auto-video/.env
+```
+
+The key value was not recorded. Only its existence and length were inspected.
+
+Validation:
+
+```text
+594 passed, 2 skipped
+```
+
+Live smoke attempts:
+
+```text
+1. zai:glm-5.2 against https://api.z.ai/api/paas/v4
+2. zai:glm-4.7-flash against https://open.bigmodel.cn/api/paas/v4
+```
+
+Both attempts failed with:
+
+```text
+401 Unauthorized
+```
+
+Interpretation:
+
+```text
+The adapter is implemented and unit-tested, but the currently stored key is not
+usable for live Z.ai Provider API Delta evidence. This is not evidence for or
+against GLM-5.2 behavior. It is an authentication/configuration blocker.
+```
+
+Next action:
+
+```text
+Provide or refresh a valid Z.ai API key, preferably under ZHIPU_API_KEY or
+Z_AI_API_KEY, then rerun the CASE-011 smoke before any R3 provider run.
+```
+
 ---
 
 ## 4. Availability-Aware Delta
