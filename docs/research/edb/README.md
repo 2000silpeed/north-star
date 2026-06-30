@@ -55,6 +55,7 @@ North Star owns:
 10. `010-consistency-stress-test-plan.md` — record EKOS Issue #4 implementation and the first consistency analysis over R5 real-model data.
 11. `011-prompt-variant-stress-test-r3.md` — record the first prompt-variant stress test over CLI agents, including Codex stability and Claude session-limit contamination.
 12. `012-ekos-delta-benchmark.md` — define and record the first EKOS Delta Benchmark implementation: same model before vs after EKOS structured context.
+13. `013-delta-causality-controls.md` — record negative controls, robustness controls, ablation, and the Provider API Delta runner needed to separate EKOS context effects from CLI-agent product-wrapper effects.
 
 ---
 
@@ -111,6 +112,22 @@ Codex + EKOS Context
 The early delta smoke suggests EKOS context can improve reviewability score
 while preserving max-safe accuracy and avoiding over-delegation. This remains a
 small smoke result, not a superiority claim.
+
+### H8 — CLI-Agent Causality Is Not Provider-Independent Evidence
+
+Negative control, robustness, and ablation runs have strengthened the Codex CLI
+causality story, but Codex CLI is still a product wrapper around model behavior.
+
+The next evidence gap is a clean provider API delta:
+
+```text
+Provider API model
+vs
+Provider API model + EKOS Context
+```
+
+Until real provider API delta data exists, EDB should not claim
+provider-independent EKOS causal value.
 
 ---
 

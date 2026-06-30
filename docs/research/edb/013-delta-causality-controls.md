@@ -642,6 +642,163 @@ EKOS implementation issue:
 
 - `2000silpeed/ekos-sap-knowledge-os#10`
 
+Implementation result:
+
+```text
+Status: implemented in EKOS
+Command: python -m ekos benchmark provider-delta
+EKOS commit: 4ffb5e9
+```
+
+The EKOS implementation now supports a clean provider API delta runner:
+
+```text
+A. before = provider API model with the raw EDB prompt
+B. after  = provider API model with EKOS structured context added
+```
+
+This runner reuses the existing OpenAI, Anthropic, and Gemini provider adapters
+from the live-model runner. It uses the same `DelegationDecisionContract` JSON
+schema and the same delegation scorer as the CLI delta, negative-control,
+robustness, and ablation runners.
+
+The point is not to prove EKOS superiority by implementation. The point is to
+remove one major confound from future evidence:
+
+```text
+Codex CLI product wrapper effect
+```
+
+The runner records:
+
+```text
+exact provider model IDs
+provider display names
+temperature
+prompt variant
+run index
+prompt version
+prompt SHA-256 hashes
+raw provider responses
+redacted provider requests
+token usage where available
+parse errors
+runner errors
+per-model deltas
+skipped provider/model configs
+```
+
+It exports:
+
+```text
+before/results.json
+before/results.csv
+after/results.json
+after/results.csv
+delta.json
+delta.csv
+summary.md
+raw/
+```
+
+The runner deliberately treats unavailable providers as benchmark state rather
+than benchmark failure. If an API key is missing, placeholder-like, or if the
+configured model ID is still a placeholder such as `replace-with-gemini-model`,
+the model is recorded under `skipped_models` and the provider is not called.
+
+Mock validation:
+
+```text
+593 passed, 2 skipped
+```
+
+Mock smoke command:
+
+```bash
+python -m ekos benchmark provider-delta \
+  --mock \
+  --models "" \
+  --model openai:mock-openai:OpenAI-mock \
+  --cases CASE-011 \
+  --temperatures 0.0 \
+  --prompt-variants baseline \
+  --runs 1 \
+  --out out/edb-provider-api-delta-smoke-2
+```
+
+Mock smoke result:
+
+```text
+Mode: mock
+Models run: 1
+Models skipped: 0
+Pair alignment: 1/1
+Total score: 18.000 -> 20.000
+Score delta: +2.000
+Enterprise Delta Score: 0.053
+Parse failure rate: 0.000 -> 0.000
+Runner error rate: 0.000 -> 0.000
+Over-delegation rate: 0.000 -> 0.000
+```
+
+Provider config skip smoke command:
+
+```bash
+python -m ekos benchmark provider-delta \
+  --models models/live-models.example.json \
+  --cases CASE-011 \
+  --temperatures 0.0 \
+  --prompt-variants baseline \
+  --runs 1 \
+  --out out/edb-provider-api-delta-skip-smoke-2
+```
+
+Provider config skip smoke result:
+
+```text
+Mode: provider-api
+Models run: 0
+Models skipped: 3
+Pair alignment: 0/0
+Skipped reason: missing or placeholder provider model ID
+```
+
+This skip smoke matters because local environments may contain some provider
+API keys. The example config must not accidentally spend API calls against
+placeholder model IDs.
+
+Current limitation:
+
+```text
+No real provider API delta evidence has been collected yet for Issue #10.
+```
+
+The implementation removes the CLI-product-wrapper confound for future runs,
+but it does not itself establish provider-independent EKOS value. The next
+evidence step requires real, explicitly selected provider model IDs and API
+keys supplied outside git.
+
+Recommended real-provider first run:
+
+```bash
+python -m ekos benchmark provider-delta \
+  --models models/live-models.local.json \
+  --cases CASE-011,CASE-012,CASE-013,CASE-014,CASE-015 \
+  --temperatures 0.0 \
+  --prompt-variants baseline,audit-emphasis \
+  --runs 3 \
+  --out out/edb-provider-api-delta-r3
+```
+
+Interpretation discipline:
+
+```text
+Provider API delta evidence can avoid CLI-agent wrapper effects, but it still
+depends on exact provider model IDs, schema support, API parameters, provider
+availability, and response behavior. It does not prove business ROI,
+production readiness, or universal EKOS superiority.
+```
+
 ---
 
 ## 4. Availability-Aware Delta
@@ -666,7 +823,7 @@ This belongs under the parent validity-control issue:
 
 ## Research Priority
 
-Priority order:
+Original priority order before the causality-control sprint:
 
 1. Negative control
 2. Ablation study
@@ -679,17 +836,39 @@ Negative control and ablation attack the main causal question directly.
 
 Provider API is important, but it should not replace the causality controls.
 
+Updated priority after Issues #8, #9, #10, and #11:
+
+1. Run real Provider API Delta R3 with explicitly selected provider model IDs.
+2. If provider API delta is positive, add provider-side generic structured-context controls.
+3. If provider API delta is weak or negative, inspect whether CLI-agent gains were wrapper-specific.
+4. Add more discriminative ablation cases before repeating the same ablation at R5.
+5. Keep availability-aware reporting in every result summary.
+
+Reason:
+
+The CLI-agent causality controls are now stronger than the provider API
+evidence. The remaining large weakness is no longer implementation mechanics;
+it is whether EKOS context still helps when the product wrapper is removed.
+
 ---
 
 ## Claim Discipline
 
-Allowed after current R5 evidence:
+Allowed after current CLI-agent evidence:
 
 > Same Codex CLI plus EKOS context improved EDB outputs under the tested schema and scorer, without increasing unsafe over-delegation.
 
+Allowed after the robustness run:
+
+> EKOS-specific win against the evaluated generic structured-context baselines under the tested Codex CLI conditions.
+
+Allowed after Issue #10 implementation:
+
+> EKOS now has a clean provider API delta runner whose mock and skip paths are validated.
+
 Not yet allowed:
 
-> EKOS has proven unique causal value beyond generic structured context.
+> EKOS has proven provider-independent causal value beyond generic structured context.
 
 > EKOS improves enterprise ROI.
 
@@ -704,11 +883,22 @@ Not yet allowed:
 ```text
 Continue EKOS Research Sprint.
 
-Current focus: EDB Delta causality controls.
+Current focus: EDB Provider API Delta evidence.
 
-Start with issue #8: implement negative-control structured context so the benchmark compares Model, Model + generic structured context, and Model + EKOS context.
+Issues #8, #9, #10, and #11 are implemented.
 
-Do not claim EKOS-specific causal value until generic structured context is tested.
+Next run:
+python -m ekos benchmark provider-delta \
+  --models models/live-models.local.json \
+  --cases CASE-011,CASE-012,CASE-013,CASE-014,CASE-015 \
+  --temperatures 0.0 \
+  --prompt-variants baseline,audit-emphasis \
+  --runs 3 \
+  --out out/edb-provider-api-delta-r3
+
+Record exact provider model IDs.
+Record skipped providers as skipped, not failed.
+Do not claim provider-independent EKOS value until real provider API data exists.
 Do not start ERB yet.
 Keep safety gate first: unsafe over-delegation must not increase.
 ```
