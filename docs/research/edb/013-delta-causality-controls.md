@@ -74,6 +74,78 @@ EKOS implementation issue:
 
 - `2000silpeed/ekos-sap-knowledge-os#8`
 
+Implementation result:
+
+```text
+Status: implemented in EKOS
+Command: python -m ekos benchmark negative-control
+```
+
+The EKOS implementation now supports a three-condition benchmark:
+
+```text
+A. before  = model-only EDB prompt
+B. control = model + generic structured source-note context
+C. after   = model + EKOS structured context
+```
+
+The generic control intentionally stays below EKOS semantics. It can contain
+object references, source records, source snippets, simple counts, and generic
+case facts. It must not contain EKOS authority constraints, evidence-to-authority
+mapping, policy-boundary interpretation, blocking-risk interpretation,
+reversibility classification, completed DelegationDecisionContract fields, or
+gold labels.
+
+The runner exports:
+
+```text
+before/results.json
+before/results.csv
+control/results.json
+control/results.csv
+after/results.json
+after/results.csv
+negative_control_delta.json
+negative_control_delta.csv
+summary.md
+raw/
+```
+
+The report explicitly separates:
+
+```text
+Model -> Generic Context delta
+Generic Context -> EKOS Context delta
+Model -> EKOS Context delta
+```
+
+It also emits one of three interpretation labels:
+
+```text
+EKOS-specific win
+structured-context-only win
+inconclusive
+```
+
+Mock validation result:
+
+```text
+581 passed, 2 skipped
+```
+
+The mock smoke path produced aligned pairs and the expected ordering:
+
+```text
+Model < Generic Context < EKOS Context
+```
+
+Important limitation:
+
+The mock result validates mechanics only. It does not prove EKOS-specific
+causal value. The next evidence step is to run the real Codex CLI negative
+control and inspect whether `Generic Context -> EKOS Context` remains positive
+without increasing over-delegation or hard failures.
+
 ---
 
 ## 2. Ablation Study
