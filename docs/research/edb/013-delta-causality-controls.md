@@ -336,6 +336,94 @@ The ablation runner is a falsification tool. A component listed under
 current EDB cases and runner did not show measurable degradation when that
 component was removed.
 
+Real Codex CLI R3 result:
+
+```bash
+python -m ekos benchmark delta-ablation \
+  --system codex-cli \
+  --cases CASE-011,CASE-012,CASE-013,CASE-014,CASE-015 \
+  --runs 3 \
+  --prompt-variants baseline,audit-emphasis \
+  --out out/edb-delta-ablation-codex-r3
+```
+
+Local result artifact:
+
+```text
+out/edb-delta-ablation-codex-r3/
+```
+
+Pair alignment:
+
+```text
+30/30 aligned pairs
+```
+
+All-pair result:
+
+| Metric | Full | No evidence | No policy | No relationship paths | No process state | No authority boundary |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Total score | 19.433 | 19.533 | 19.367 | 19.500 | 19.500 | 19.567 |
+| Max-safe accuracy | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| Over-delegation rate | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 |
+| Blocking risk stability | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| Reversibility stability | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 |
+| Audit proxy stability | 0.300 | 0.600 | 0.700 | 0.600 | 0.400 | 0.700 |
+| Critical-field stability | 0.922 | 0.956 | 0.967 | 0.956 | 0.933 | 0.967 |
+
+Component contribution:
+
+| Removed component | Score drop | Reviewability drop | Consistency drop | Safety drop | Over-delegation increase | Hard-fail increase |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| No evidence | -0.100 | -0.008 | -0.033 | -0.000 | 0.000 | 0.000 |
+| No policy | 0.067 | 0.006 | -0.044 | -0.000 | 0.000 | 0.000 |
+| No relationship paths | -0.067 | -0.006 | -0.033 | -0.000 | 0.000 | 0.000 |
+| No process state | -0.067 | -0.006 | -0.011 | -0.000 | 0.000 | 0.000 |
+| No authority boundary | -0.133 | -0.011 | -0.044 | -0.000 | 0.000 | 0.000 |
+
+Availability and parsing:
+
+| Condition | Records | Parse failures | Runner errors |
+| --- | ---: | ---: | ---: |
+| Full | 30 | 0 | 0 |
+| No evidence | 30 | 0 | 0 |
+| No policy | 30 | 0 | 0 |
+| No relationship paths | 30 | 0 | 0 |
+| No process state | 30 | 0 | 0 |
+| No authority boundary | 30 | 0 | 0 |
+
+Clean-pair result:
+
+```text
+Clean pairs: 30/30
+Full mean score: 19.433
+No evidence drop: -0.100
+No policy drop: 0.067
+No relationship paths drop: -0.067
+No process state drop: -0.067
+No authority boundary drop: -0.133
+```
+
+Interpretation:
+
+```text
+This R3 ablation run does not show a meaningful component drop. The only
+positive score drop is no-policy at 0.067 points, while removing several other
+components slightly improved the average score. There were no parse failures,
+runner errors, unsafe over-delegation increases, or hard-fail increases.
+```
+
+Sprint decision:
+
+```text
+Do not expand this exact ablation to R5 yet. The current R3 result is more
+consistent with component-insensitive Codex CLI behavior on CASE-011~015 than
+with a clear single-component causal signal. R5 becomes useful after adding
+more discriminative cases, tightening the score components that should depend
+on the removed context, or targeting the small no-policy signal with a narrower
+follow-up run.
+```
+
 ---
 
 ## 3. Provider API Delta
