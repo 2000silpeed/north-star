@@ -45,6 +45,7 @@ When North Star discusses implementation, it should reference that existing EKOS
 - EKOS
 - Enterprise Delegation Benchmark (EDB)
 - EDB EKOS Delta Benchmark — measure `Δ(Model + EKOS, Model)`
+- Enterprise Task Cost Benchmark (ETCB)
 - SAP CLI
 - SAP OData MCP
 - Make Your Ontology
