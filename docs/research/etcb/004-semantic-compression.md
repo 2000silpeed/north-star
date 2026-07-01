@@ -1,4 +1,4 @@
-# ETCB Research Note 004 — Semantic Compression
+# ETCB Research Note 004 - Semantic Compression
 
 **Date:** 2026-07-01
 
@@ -8,59 +8,73 @@
 
 ## Context
 
-ETCB first-turn token-cost evidence showed that current EKOS improves quality and
-safety but increases first-turn token cost.
-
-ETCB workflow repair-cost evidence then showed a narrow favorable condition:
-for the 9 Gemini model-only hard-failed records, model-only plus one repair used
-more tokens and still failed, while EKOS completed all 9 safely.
-
-Difficulty-conditioned ETCB narrowed the economic claim further:
+ETCB Research Notes 001 through 003 established the current cost boundary:
 
 ```text
-EKOS is economically favorable only for evaluated failure-prone
+EDB quality/reviewability/safety evidence: positive.
+ETCB first-turn token efficiency: negative.
+ETCB one-turn repair-cost evidence: mixed.
+Difficulty-conditioned ETCB supports H10c only in a narrow form:
+EKOS is economically favorable for evaluated failure-prone
 policy/authority/delegation boundary tasks.
 ```
 
-H11 asks whether EKOS can keep that failure-prone safety benefit while reducing
-context tokens.
+The strongest favorable cost signal before this note was the 9-record
+failure-prone subset:
+
+| Path | Tokens | Safe success |
+| --- | ---: | ---: |
+| Model-only first answer + one repair | 72,107 | 0/9 |
+| EKOS first answer | 35,827 | 9/9 |
+
+That result did not prove ROI or universal cost savings. It showed that current
+EKOS can buy safety and completion reliability on the evaluated failure-prone
+authority/policy/delegation records. The remaining problem was context volume.
+
+H11 asks:
+
+```text
+Can EKOS preserve its failure-prone safety benefit while reducing context tokens?
+```
 
 ---
 
 ## Research Decision
 
-Start H11 Semantic Compression from the highest-signal subset rather than the
-whole workload.
+Implement the minimum H11 semantic compression experiment.
 
-Target subset:
+Do not create a broad new benchmark family. Do not optimize prompts to make
+EKOS look cheaper. Reuse the existing EDB schema, scorer, provider artifact, and
+difficulty-conditioned target selection.
+
+Implementation repository:
 
 ```text
-9 Gemini failure-prone authority/policy/delegation records
+2000silpeed/ekos-sap-knowledge-os
 ```
 
-Reason:
+Implemented command:
 
-```text
-This is the subset where EKOS already dominates model-only plus one repair.
+```bash
+python -m ekos benchmark semantic-compression \
+  --models models/live-models.local.json \
+  --source-provider-delta out/edb-provider-api-delta-anthropic-gemini-r3-2026-07-01 \
+  --source-difficulty out/etcb-difficulty-conditioned-analysis/difficulty_conditioned_cost.json \
+  --variants full,compressed,ultra \
+  --out out/etcb-semantic-compression-r3
 ```
 
-Implementation artifacts were produced in the EKOS implementation repository:
+Generated EKOS artifacts:
 
 ```text
-out/etcb-semantic-compression-r3/
-```
-
-Generated files:
-
-```text
-summary.md
-semantic_compression_delta.json
-semantic_compression_delta.csv
+out/etcb-semantic-compression-r3/summary.md
+out/etcb-semantic-compression-r3/semantic_compression_delta.json
+out/etcb-semantic-compression-r3/semantic_compression_delta.csv
 ```
 
 ---
 
-## H11 — Semantic Compression
+## H11 - Semantic Compression
 
 H11:
 
@@ -75,89 +89,171 @@ hypothesis over the evaluated failure-prone boundary records.
 
 ## Method
 
-Compare three EKOS context variants on the 9 failure-prone records:
+Target selection used the existing difficulty-conditioned ETCB artifact:
 
 ```text
-1. Full EKOS context
-2. Compressed EKOS context
-3. Ultra-compressed EKOS context
+difficulty_bucket == failure_prone
+model-only first answer hard-failed
+model-only plus one repair did not produce safe success
+EKOS first answer produced safe success
 ```
 
-Compression must preserve:
+This selected 9 records:
+
+```text
+Provider/model: Gemini gemini-2.5-flash
+Cases: CASE-012 and CASE-014
+CASE-012 records: 6
+CASE-014 records: 3
+```
+
+The experiment compared three EKOS context variants:
+
+| Variant | Source |
+| --- | --- |
+| `full` | Existing Provider API Delta R3 EKOS-after records |
+| `compressed` | New provider calls with shorter EKOS context |
+| `ultra` | New provider calls with the shortest tested EKOS context |
+
+The full rows were reused from the existing R3 artifact instead of being rerun.
+The compressed and ultra rows were new Gemini provider API calls on the same
+case, prompt variant, and run-index keys.
+
+All variants reused:
+
+```text
+DelegationDecisionContract schema
+score_delegation_answer scorer
+same CASE-012 / CASE-014 case packets
+same prompt variants from the selected pair keys
+```
+
+Compression preserved:
 
 ```text
 authority boundary
 policy constraint
 evidence references
-max-safe delegation decision
-auditability / reviewability signal
+approval role and condition
+blocking risk codes
+reversibility classification
+auditability signal
 ```
 
-The target is not merely shorter text. The target is to preserve enterprise
+Compression did not include:
+
+```text
+gold_label
+mandatory_evidence_ids
+mandatory_policy_ids
+maximum_safe_delegation_level
+completed DelegationDecisionContract
+```
+
+The target was not merely shorter text. The target was to preserve enterprise
 meaning while removing unnecessary context volume.
 
 ---
 
 ## Result
 
-| Variant | Tokens | Safe success | Token delta vs full | Token reduction | Max-safe correctness | Hard failures | Over-delegation |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Full EKOS | 35,827 | 9/9 | — | — | 9/9 | 0 | 0 |
-| Compressed EKOS | 26,245 | 9/9 | -9,582 | -26.7% | 9/9 | 0 | 0 |
-| Ultra-compressed EKOS | 24,554 | 9/9 | -11,273 | -31.5% | 9/9 | 0 | 0 |
+| Variant | Records | Input tokens | Output tokens | Total tokens | Safe success | Score | Reviewability | Max-safe correct | Hard failures | Over-delegation | Score/1k | Reviewability/1k | Tokens/safe |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| full | 9 | 26,508 | 2,614 | 35,827 | 9/9 | 174 | 102 | 9/9 | 0 | 0 | 4.857 | 2.847 | 3,980.778 |
+| compressed | 9 | 17,034 | 2,404 | 26,245 | 9/9 | 180 | 108 | 9/9 | 0 | 0 | 6.858 | 4.115 | 2,916.111 |
+| ultra | 9 | 14,982 | 2,679 | 24,554 | 9/9 | 180 | 108 | 9/9 | 0 | 0 | 7.331 | 4.398 | 2,728.222 |
 
-Score and reviewability also improved in this run:
+Token reduction versus full EKOS:
 
-| Variant | Score | Reviewability |
+| Variant | Total-token reduction | Input-token reduction |
 | --- | ---: | ---: |
-| Full EKOS | 174 | 102 |
-| Compressed / Ultra result | 180 | 108 |
+| compressed | 9,582 tokens, 26.7% | 9,474 tokens |
+| ultra | 11,273 tokens, 31.5% | 11,526 tokens |
 
-The important result is:
+---
+
+## Answer To H11
+
+For the evaluated 9 failure-prone Gemini records:
 
 ```text
-Quality and safety were preserved while tokens decreased.
+Yes. EKOS reduced context tokens while preserving the observed safety benefit.
 ```
 
-This is the first ETCB result where EKOS shows a favorable economic direction on
-the targeted failure-prone subset:
+Both compressed variants preserved:
 
 ```text
-quality/safety maintained or improved
-context tokens decreased
+9/9 safe success
+9/9 max-safe correctness
+0 hard failures
+0 over-delegation
+```
+
+Both compressed variants also improved score and reviewability relative to the
+reused full-context R3 rows:
+
+```text
+Score: 174 -> 180
+Reviewability: 102 -> 108
+```
+
+This is a positive H11 result, but it is narrow. It applies to the evaluated
+failure-prone authority/policy/delegation boundary records, not to all
+enterprise tasks.
+
+---
+
+## Field Assessment
+
+Essential fields in this experiment:
+
+- authority boundary / prepare-only versus execution authority
+- approval role and approval condition
+- policy reference IDs
+- evidence reference IDs
+- blocking risk codes
+- reversibility classification
+- auditability signal requiring evidence-policy-boundary linkage
+
+Compressible fields in this experiment:
+
+- verbose evidence and policy prose
+- expanded process-state narrative
+- relationship path objects when boundary references are retained
+- context field source/provenance labels
+- long audit requirement wording
+
+The strongest design lesson is:
+
+```text
+EKOS does not need to copy every semantic explanation into the prompt when the
+authority boundary, policy/evidence references, risk code, reversibility, and
+audit signal remain explicit.
 ```
 
 ---
 
 ## Interpretation
 
-H11 preliminary interpretation:
+H11 is supported in a preliminary, narrow form:
 
 ```text
-positive for the evaluated 9 Gemini failure-prone authority/policy/delegation
-records.
+Semantic compression can preserve EKOS's failure-prone safety benefit while
+reducing provider-reported total tokens on the evaluated authority/policy/
+delegation boundary records.
 ```
 
-This result does not support:
+This result strengthens the ETCB path because it attacks the actual weakness
+found in Notes 001 through 003: context volume.
 
-```text
-ROI
-production cost savings
-universal EKOS cost savings
-all-model generalization
-all-task generalization
-```
-
-It supports a narrower claim:
-
-```text
-For the evaluated failure-prone boundary records, semantic compression reduced
-EKOS context cost while preserving safe completion.
-```
+It does not reverse the earlier result that current full EKOS context is
+token-expensive for easy, medium, and already-successful records. H11 only
+shows that the valuable failure-prone subset can be made materially smaller
+without losing the measured safety benefit in this run.
 
 ---
 
-## Hypothesis Update — H11a Signal Density
+## Hypothesis Update - H11a Signal Density
 
 The result suggests that semantic compression may not be only a token-reduction
 technique.
@@ -213,8 +309,8 @@ Candidate composite concept:
 Enterprise Meaning per Token
 ```
 
-The goal is not to minimize tokens blindly. The goal is to maximize the amount of
-correct, reviewable, authority-aware enterprise meaning delivered per token.
+The goal is not to minimize tokens blindly. The goal is to maximize the amount
+of correct, reviewable, authority-aware enterprise meaning delivered per token.
 
 ---
 
@@ -235,6 +331,57 @@ The right sequence is therefore:
 2. Compress only the context needed for that value.
 3. Measure whether safety is preserved and token cost falls.
 ```
+
+---
+
+## Limitations
+
+- The experiment covers only 9 records.
+- All 9 records are Gemini `gemini-2.5-flash`.
+- Only CASE-012 and CASE-014 are represented.
+- Full-context rows were reused from the previous Provider API Delta R3 artifact, while compressed rows were new calls.
+- Provider-reported Gemini totals include provider-side accounting such as thinking tokens.
+- Token accounting is not monetary-cost accounting.
+- Human review time, escalation cost, and production workflow cost remain unmeasured.
+- This does not test simple retrieval, simple reasoning, already-successful routine records, or true conflicting-evidence tasks.
+
+---
+
+## Rejected Interpretations
+
+Rejected:
+
+```text
+EKOS proves ROI.
+```
+
+Reason:
+
+This experiment measures provider-reported tokens and scorer outputs. It does
+not measure provider pricing, human review time, escalation cost, incident
+avoidance, production frequency, or adoption cost.
+
+Rejected:
+
+```text
+EKOS is now universally cheaper.
+```
+
+Reason:
+
+The earlier difficulty-conditioned result still shows EKOS is token-negative
+for easy, medium, and already-successful records under current context design.
+
+Rejected:
+
+```text
+Ultra compression is always safe.
+```
+
+Reason:
+
+Ultra compression preserved safety on the evaluated 9 records only. It must be
+treated as a candidate context shape, not as a universal EKOS compression rule.
 
 ---
 
@@ -268,18 +415,82 @@ Compressed EKOS is universally better than full EKOS.
 
 ---
 
+## Hypothesis Status
+
+H10a:
+
+```text
+Current full EKOS improves quality but increases first-turn token cost.
+```
+
+Status:
+
+```text
+still supported
+```
+
+H10b:
+
+```text
+Workflow-level repair-cost savings remain partially measured.
+```
+
+Status:
+
+```text
+unchanged; favorable on hard-failed subset, not full workflow-cost proof
+```
+
+H10c:
+
+```text
+EKOS is economically justified primarily for difficult or failure-prone
+enterprise task classes.
+```
+
+Status:
+
+```text
+still supported only in narrowed form for evaluated failure-prone
+policy/authority/delegation records
+```
+
+H11:
+
+```text
+EKOS can reduce context tokens while preserving the failure-prone safety benefit.
+```
+
+Status after this note:
+
+```text
+preliminarily supported for the evaluated 9 Gemini failure-prone
+authority/policy/delegation records
+```
+
+---
+
 ## Minimum Next Research
 
-Open a follow-up research track for signal density.
+Minimum useful next steps:
 
-Next question:
+1. Repeat H11 on the same 9 records with a full-context rerun in the same batch
+   to reduce temporal/provider drift between full and compressed conditions.
+2. Run the same compressed variants on Anthropic only if a failure-prone subset
+   exists in a future run; the current Anthropic R3 had no hard failures.
+3. Test whether compressed EKOS remains safe on non-failed hard records before
+   using it as the default EKOS context shape.
+4. Open a follow-up signal-density research track.
+5. Avoid expanding ETCB until the compression boundary is clear.
+
+Signal-density follow-up question:
 
 ```text
 How much enterprise meaning per token does EKOS provide, and which context fields
 carry the most signal?
 ```
 
-Minimum experiment:
+Minimum signal-density experiment:
 
 ```text
 1. Decompose compressed EKOS context into authority, policy, evidence,
@@ -289,5 +500,10 @@ Minimum experiment:
 4. Produce an Enterprise Signal Density report.
 ```
 
-The next research target is not just smaller prompts. It is better enterprise
-signal engineering.
+Future sessions should preserve the current answer:
+
+```text
+H11 is positive but narrow. EKOS semantic compression preserved safety and
+reduced tokens on the evaluated failure-prone boundary tasks. It does not prove
+ROI, production cost savings, or universal cost savings.
+```
