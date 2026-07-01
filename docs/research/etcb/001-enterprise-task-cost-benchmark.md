@@ -76,28 +76,138 @@ token_cost_delta_by_group.csv
 
 ---
 
-## Hypothesis H10 — EKOS Reduces Enterprise Task Completion Cost
+## Original Hypothesis H10 — EKOS Reduces Enterprise Task Completion Cost
 
+Original H10 assumed:
+
+```text
 EKOS may increase first-prompt input tokens, but reduce total task cost by
 improving first-pass success and reducing retries, hard failures, output
 verbosity, and human correction effort.
+```
 
-Expected pattern:
+Expected pattern before measurement:
 
 ```text
 Single-turn input tokens: EKOS may be higher
-Total successful-task tokens: EKOS may be lower
+Total successful-task tokens: EKOS should be lower
 Retry count: EKOS should be lower
 First-pass success: EKOS should be higher
 Human corrections: EKOS should be lower
 Hard failures: EKOS should be lower
 ```
 
-This is the short-term cost hypothesis.
+This was the short-term cost hypothesis.
+
+---
+
+## Research Correction After First Measurement
+
+The first ETCB preliminary measurement did **not** support the strong version of
+H10.
+
+Observed result:
+
+```text
+EDB quality improved.
+Hard failures decreased.
+Reviewability improved.
+First-turn token usage increased significantly.
+Quality-normalized token efficiency decreased.
+```
+
+Interpretation:
+
+```text
+Current EKOS improves quality, safety, and reviewability, but does not yet
+improve first-turn token efficiency.
+```
+
+This is not treated as a project failure. It is treated as research evidence
+that corrects the hypothesis.
+
+The ETCB objective therefore changes from:
+
+```text
+Does EKOS reduce task cost?
+```
+
+to:
+
+```text
+Under what conditions can EKOS improve quality while also reducing enterprise
+task cost?
+```
+
+The preliminary ETCB evidence falsified the initial expectation that EKOS would
+immediately reduce task cost under first-turn token accounting. This redirects
+the research toward semantic compression and workflow-level repair-cost
+measurement rather than larger prompt augmentation.
+
+---
+
+## Revised Hypothesis H10a — Current EKOS Cost Profile
+
+**Status:** Supported by preliminary ETCB evidence.
+
+Current EKOS increases first-turn token consumption while improving quality.
+
+Supported by this measurement:
+
+```text
+EKOS increased first-turn input tokens.
+EKOS increased mean score.
+EKOS increased mean reviewability.
+EKOS reduced hard failures.
+EKOS did not improve score per 1k total tokens.
+EKOS did not improve reviewability per 1k total tokens.
+```
+
+H10a replaces the earlier assumption that EKOS would immediately reduce task
+cost in the first measured provider API run.
+
+---
+
+## Revised Hypothesis H10b — Workflow-Level Cost Remains Open
+
+**Status:** Open.
+
+The first ETCB measurement was a single-turn provider API token analysis. It did
+not measure downstream repair turns, human review time, workflow handoff cost,
+or the operational cost of hard failures.
+
+H10b asks:
+
+```text
+Can EKOS reduce total enterprise task completion cost once retries, hard-failure
+repair, human correction, and elapsed workflow time are included?
+```
+
+This remains unmeasured.
+
+A future H10b experiment should compare:
+
+```text
+model-only failed or incomplete answer
+-> repair / retry / human correction path
+
+vs
+
+EKOS answer
+-> review / approval path
+```
+
+The cost unit should include tokens, time, and correction burden, not tokens
+alone.
 
 ---
 
 ## Hypothesis H11 — EKOS Enables Semantic Compression
+
+**Status:** Open and now elevated in priority.
+
+The current ETCB result suggests semantic compression has become a primary
+research objective.
 
 Longer-term, EKOS may reduce prompt tokens through semantic references.
 
@@ -122,7 +232,8 @@ Evidence remains traceable
 Tool/context retrieval supplies enterprise facts on demand
 ```
 
-This is the long-term compression hypothesis.
+This is the long-term compression hypothesis. It was not tested in the first
+ETCB run.
 
 ---
 
@@ -334,42 +445,44 @@ EKOS did not improve first-turn token efficiency in this ETCB preliminary run.
 
 ---
 
-## Hypotheses After Measurement
+## ETCB Roadmap After First Measurement
 
-### H10 — EKOS may increase first-turn input tokens but reduce total enterprise task completion cost.
-
-Preliminary status:
+Stage 1 — Current first-turn token-cost measurement
 
 ```text
-partially supported, mostly unproven
+Status: completed
+Result: negative for first-turn token efficiency
 ```
 
-Supported:
-
-EKOS increased first-turn input tokens.
-
-Not supported by this measurement:
-
-The existing single-turn token data does not show reduced token-normalized task
-completion cost. Safe successes increased from 51 to 60, but safe successes per
-1k total tokens decreased.
-
-Still unmeasured:
-
-Whether reduced hard failures would lower real enterprise completion cost after
-including repair turns, human review time, failed-task retries, or operational
-handoff cost.
-
-### H11 — EKOS may later reduce prompt tokens through semantic compression.
-
-Preliminary status:
+Stage 2 — Quality-normalized cost measurement
 
 ```text
-untested
+Status: completed preliminarily
+Result: negative in the first Provider API R3 analysis
 ```
 
-This run used the existing EKOS context and did not optimize or compress it.
-H11 remains a future design hypothesis, not current evidence.
+Stage 3 — Workflow-level repair-cost measurement
+
+```text
+Status: planned
+Goal: measure whether hard-failure reduction reduces retries, repair tokens,
+human correction, or elapsed time.
+```
+
+Stage 4 — Semantic compression prototype
+
+```text
+Status: planned
+Goal: reduce prompt tokens while preserving EKOS meaning, traceability, and
+authority boundaries.
+```
+
+Stage 5 — Enterprise ROI Bridge
+
+```text
+Status: future work
+Goal: connect ETCB evidence to ERB only after task-level cost is measured.
+```
 
 ---
 
@@ -411,7 +524,21 @@ cost-efficient under first-turn token accounting.
 
 ---
 
-## Claim Discipline
+## Claim Discipline Update
+
+A higher first-turn token count is not, by itself, evidence against EKOS.
+
+Enterprise task cost must be evaluated across the entire task lifecycle,
+including:
+
+```text
+retries
+hard failures
+repair prompts
+human correction effort
+elapsed time
+successful task completion
+```
 
 Allowed:
 
@@ -448,7 +575,13 @@ EKOS is universally more efficient than model-only prompting.
 
 Do not add a new benchmark family.
 
-The minimum useful next experiment is replication:
+The minimum useful next experiment is not another favorable quality benchmark.
+It is one of two targeted measurements:
+
+1. Workflow-level repair-cost measurement for hard-failed model-only records.
+2. Semantic compression prototype measurement using compact EKOS references.
+
+If replication is needed first:
 
 ```text
 Repeat the same Provider API Delta run at R5, then rerun the same post-hoc ETCB
@@ -459,7 +592,7 @@ If the R5 result stays directionally similar, the next research decision should
 not be another benchmark expansion. It should be whether EKOS needs semantic
 compression before cost-efficiency claims are attempted.
 
-If H10 needs to be tested more directly, the minimum additional evidence should
+If H10b needs to be tested more directly, the minimum additional evidence should
 measure task repair cost for the same hard-failed records, using the existing
 runner contract and unchanged prompts. That should be treated as a separate
 workflow-cost measurement, not as proof of ROI.
@@ -476,8 +609,10 @@ The correct state after Issue #13 is:
 EDB quality evidence: positive for evaluated models.
 ETCB first-turn token efficiency: negative in the preliminary Provider API R3
 analysis.
-H10: not proven.
-H11: not tested.
+H10 original: corrected.
+H10a: supported — current EKOS improves quality but increases first-turn token cost.
+H10b: open — workflow-level repair-cost savings are unmeasured.
+H11: open — semantic compression is untested and now higher priority.
 ```
 
 The research opportunity is now clear:
