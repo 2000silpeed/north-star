@@ -57,6 +57,7 @@ North Star owns:
 12. `012-ekos-delta-benchmark.md` — define and record the first EKOS Delta Benchmark implementation: same model before vs after EKOS structured context.
 13. `013-delta-causality-controls.md` — record negative controls, robustness controls, ablation, and the Provider API Delta runner needed to separate EKOS context effects from CLI-agent product-wrapper effects.
 14. `014-cross-cli-agent-evidence-r3.md` — record the first post-implementation cross-CLI delta replication across Codex CLI and Claude Code CLI.
+15. `015-provider-api-delta-r3.md` — record the first clean provider API delta R3 over Anthropic and Gemini after excluding quota/auth-blocked providers.
 
 ---
 
@@ -127,8 +128,14 @@ vs
 Provider API model + EKOS Context
 ```
 
-Until real provider API delta data exists, EDB should not claim
-provider-independent EKOS causal value.
+The first Provider API Delta R3 over Anthropic `claude-sonnet-4-6` and Gemini
+`gemini-2.5-flash` showed positive EKOS deltas without unsafe over-delegation,
+parse failures, or runner errors.
+
+This weakens the CLI-product-wrapper objection for the evaluated provider API
+models, but it still does not prove provider-independent EKOS causal value
+across all providers. OpenAI was quota-blocked and Z.ai was authentication-
+blocked during the first provider API R3.
 
 ### H9 — EKOS Delta Should Replicate Across Evaluated CLI Agents
 

@@ -986,3 +986,16 @@ Provider API Delta remains the cleaner path for removing CLI-product-wrapper
 confounds. The cross-CLI result strengthens evaluated CLI-agent evidence, not
 provider-independent causal proof.
 ```
+
+Postscript after Provider API R3:
+
+```text
+The first real Provider API Delta R3 was later collected for Anthropic
+claude-sonnet-4-6 and Gemini gemini-2.5-flash after excluding OpenAI
+quota-blocked calls and Z.ai authentication-blocked calls. That provider API
+evidence is recorded in docs/research/edb/015-provider-api-delta-r3.md.
+
+The result weakens the CLI-product-wrapper objection for the evaluated provider
+API models, but it remains bounded to Anthropic and Gemini. It does not prove
+universal provider-independent EKOS value.
+```
