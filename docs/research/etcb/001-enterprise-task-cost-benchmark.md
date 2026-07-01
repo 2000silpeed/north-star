@@ -611,7 +611,7 @@ ETCB first-turn token efficiency: negative in the preliminary Provider API R3
 analysis.
 H10 original: corrected.
 H10a: supported — current EKOS improves quality but increases first-turn token cost.
-H10b: open — workflow-level repair-cost savings are unmeasured.
+H10b after this note: open — workflow-level repair-cost savings are unmeasured.
 H11: open — semantic compression is untested and now higher priority.
 ```
 
@@ -620,3 +620,19 @@ The research opportunity is now clear:
 EKOS has evidence that it can improve enterprise delegation quality. It now has
 pressure to become more compact, or to prove that its extra upfront context
 reduces downstream repair and review cost enough to justify the token increase.
+
+---
+
+## Follow-Up Measurement
+
+The minimum repair-cost follow-up described above was executed and recorded in:
+
+```text
+docs/research/etcb/002-workflow-repair-cost.md
+```
+
+That result does not reverse the first-turn token-cost finding. It shows that a
+single repair turn failed to recover the 9 Gemini hard failures, while EKOS
+first answers produced 9/9 safe successes for that failed subset. The result is
+preliminary H10b evidence only and does not test H11 semantic compression. The
+updated state after that follow-up is recorded in ETCB Research Note 002.
