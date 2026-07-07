@@ -4,7 +4,7 @@ Status: Product-state snapshot
 Repository role: North Star product strategy and cross-repository synthesis
 Implementation repository: `2000silpeed/ekos-sap-knowledge-os`
 Reference issue: North Star Issue #4, "Product Gap: real enterprise data onboarding for EKOS decision packets"
-Snapshot date: 2026-07-06
+Snapshot date: 2026-07-07
 
 This document updates North Star's product narrative after the latest EKOS
 implementation milestones. It is not an implementation plan, benchmark, demo,
@@ -38,8 +38,8 @@ Can EKOS produce decision-grade packets from enterprise-shaped source data,
 rather than only consume hand-authored packets?
 ```
 
-The EKOS implementation repository now contains a narrow answer for the current
-delivery-delay / carrier-confirmation workflow:
+The EKOS implementation repository now contains a narrow answer for configured
+onboarding across two synthetic workflows:
 
 - table-shaped synthetic SAP-like CSV extracts can become evidence objects and
   a decision packet;
@@ -49,12 +49,16 @@ delivery-delay / carrier-confirmation workflow:
 - source-to-evidence lineage and decision packet provenance exist for
   configured onboarding;
 - local EKOS-like fragment fixtures can feed the same configured mapping path
-  through `FragmentSourceProvider`.
+  through `FragmentSourceProvider`;
+- a second configured workflow, IDoc material lock / reprocessing collision
+  readiness, can produce a governed packet without IDoc-specific Python
+  decision logic.
 
 This does not prove production readiness, live SAP integration, broad no-code
 onboarding, or human correctness validation. It does mean North Star should now
 describe EKOS as a configurable governed decision-packet platform in progress,
-not only as a research concept or hand-authored demo.
+not only as a research concept, hand-authored demo, or single delivery-delay
+configuration.
 
 ## 2. Current Product Definition
 
@@ -231,6 +235,53 @@ the same key decision result as the CSV configured path:
 This proves that configured onboarding is not limited to CSV files. It does not
 prove live FragmentStore integration or live SAP ingestion.
 
+### Second Configured Workflow Works Without Workflow-specific Engine Logic
+
+Delivery delay / carrier confirmation was the first configured workflow.
+
+The EKOS implementation repository now includes a second configured workflow:
+
+```text
+IDoc material lock / reprocessing collision readiness
+```
+
+Reference implementation commit:
+
+```text
+a4461dfe6666b03131bb6b63ac466799ad73ca20
+```
+
+The second workflow uses:
+
+- `configs/onboarding/idoc_material_lock_reprocessing.yaml`;
+- synthetic SAP-like CSV inputs under `data/demo/sap_like_idoc_lock/`;
+- the existing configured onboarding engine;
+- generic engine changes only;
+- no IDoc-specific Python decision logic.
+
+It differs from the delivery-delay workflow in the important dimensions that
+matter for onboarding repeatability:
+
+- source files;
+- primary object;
+- evidence rules;
+- blocking risks;
+- authority labels;
+- report wording.
+
+The generated result is:
+
+- primary object: `IDoc 0000000000123456 / Material MAT-1000 / Plant PL01`;
+- maximum safe delegation level: `1`;
+- action category: `recommend`;
+- allowed action: Recommendation only;
+- blocked action: Prepare approval-ready IDoc reprocessing plan;
+- governance status: `review_required`.
+
+This reduces the risk that EKOS is merely a delivery-delay demo. It does not
+prove broad workflow scalability, real IDoc process correctness, live SAP
+integration, production approval, no-code onboarding, or human validation.
+
 ## 4. What Has Not Been Proven
 
 The following remain unproven:
@@ -239,6 +290,8 @@ The following remain unproven:
 - production readiness;
 - human validation of correctness;
 - scalable onboarding across many workflows;
+- broad workflow onboarding without engine changes beyond this second synthetic
+  workflow;
 - real approval workflow integration;
 - security and IAM integration;
 - UI-assisted no-code configuration;
@@ -247,13 +300,13 @@ The following remain unproven:
 - operational ROI;
 - full FragmentStore-driven onboarding;
 - RFC-row provider integration into configured onboarding;
-- second workflow onboarding without engine changes.
 
 The strongest honest claim is:
 
 ```text
 EKOS now has a narrow, tested path from synthetic CSV or fragment-shaped inputs
-to governed decision packets and reports for one workflow.
+to governed decision packets and reports, and a second synthetic configured
+workflow has been added without workflow-specific Python decision logic.
 ```
 
 Nothing stronger is currently supported.
@@ -416,7 +469,8 @@ implementation details.
 Claim boundary:
 
 - This is an early prototype.
-- It supports one current workflow.
+- It supports two synthetic configured workflows, plus a fragment-fixture path
+  for the first workflow.
 - It is not a full no-code platform.
 - It does not prove scalable onboarding across many enterprise processes.
 
@@ -452,7 +506,8 @@ Claim boundary:
 
 The current 5-minute product story should be:
 
-1. Show SAP-like CSV source extracts or EKOS-like fragment fixtures.
+1. Show SAP-like CSV source extracts, EKOS-like fragment fixtures, or the
+   second IDoc material-lock CSV workflow.
 2. Show the YAML configuration that maps source aliases, evidence rules,
    policy constraints, blocking risks, and authority boundary.
 3. Show evidence objects produced from the configured mapping.
@@ -468,6 +523,17 @@ The current 5-minute product story should be:
    governed decision-packet construction from structured evidence, policy, and
    authority.
 
+For the IDoc workflow, the concise story changes from carrier confirmation to
+collision readiness:
+
+```text
+EKOS starts from synthetic IDoc, material-lock, reprocessing-job, policy, and
+incoming-queue extracts. It maps them through YAML into evidence, blocking
+risks, and an authority boundary. The result is recommendation only: classify a
+likely material-lock collision, request lock clearance, check the incoming
+IDoc queue, and do not prepare an approval-ready IDoc reprocessing plan yet.
+```
+
 The concise spoken version:
 
 ```text
@@ -482,37 +548,48 @@ allowed; approval-preparation is blocked; review is required; here is why."
 
 Priority order:
 
-### P1: Can existing SAP ingestion outputs feed configured onboarding from real or realistic assets?
+### P1: Can configured onboarding consume FragmentStore or RFC-row outputs?
 
-The fragment fixture path is a bridge. The next risk is whether actual EKOS
-ingestion outputs, such as materialized FragmentStore records or RFC-row
-payloads, can feed the same configured layer without workflow-specific engine
-changes.
+The CSV and local fragment-fixture paths are bridges. The next risk is whether
+actual EKOS ingestion outputs, such as materialized FragmentStore records or
+RFC-row payloads, can feed the same configured layer without workflow-specific
+engine changes.
 
-### P2: Can a second workflow be configured without new engine logic?
+### P2: Can a third workflow be added with no engine changes?
 
-One configured workflow is not enough to prove repeatability. A second workflow
-should test whether the current configuration contract is general enough or
-still overfit to delivery-delay confirmation.
+The second synthetic workflow partially addresses the prior repeatability
+risk. It reduces delivery-delay overfit risk, but does not prove broad
+scalability. A third workflow should test whether new workflow onboarding can
+now happen through configuration alone, without adding even small generic
+operators or engine behavior.
 
-### P3: Can real SAP operations users validate the required fields?
+### P3: Can real SAP operations users validate the two reports?
 
-The v2 data model is still a hypothesis. Real SAP logistics users need to
-review which fields are must-have blockers, which fields affect reviewability,
-which fields are context only, and which fields are hard to extract.
+The delivery-delay and IDoc reports are still synthetic product artifacts.
+Real SAP operations users need to review whether the reports make clear what
+is allowed, what is blocked, why it is blocked, and which missing fields would
+change the action boundary.
 
-### P4: Can policy/SOP/versioning be governed?
+### P4: Can real source metadata drive config authoring?
+
+The current YAML configs are hand-authored. A product platform cannot depend
+only on engineers manually discovering source aliases, field names, object
+relationships, and policy references. The next architecture question is
+whether DDIC metadata, RFC-row metadata, fragment metadata, or SAP adapter
+outputs can help author or validate workflow configs.
+
+### P5: Can policy/SOP/versioning be governed?
 
 Normalized policy constraints are useful only if their source documents,
 versions, owners, and effective dates are governed.
 
-### P5: Can review workflow and audit log be integrated?
+### P6: Can review workflow and audit log be integrated?
 
 The demo correctly keeps governance at `review_required` when no compatible
 review artifact exists. Productization requires real review workflow
 integration, reviewer identity, timestamps, and durable audit logs.
 
-### P6: Can this be packaged for non-developer users?
+### P7: Can this be packaged for non-developer users?
 
 YAML configuration is an engineering interface. Enterprise adoption will
 eventually require safer tooling for process owners, SAP consultants, audit
@@ -531,15 +608,16 @@ The next implementation question should be whether the provider boundary can
 consume materialized FragmentStore outputs or RFC-row payloads without changing
 workflow-specific YAML logic.
 
-### Step 3: Configure a second workflow without changing engine logic
+### Step 3: Configure a third workflow without changing engine logic
 
-A second workflow is the strongest near-term test of whether configurable
-onboarding is repeatable or still delivery-delay-specific.
+A third workflow is now the strongest near-term test of whether configurable
+onboarding is repeatable beyond two synthetic examples.
 
-### Step 4: Validate with a real SAP operations user
+### Step 4: Validate both current reports with a real SAP operations user
 
-Use the existing v2 data model worksheet to ask whether the current packet and
-report contain the fields needed for real review.
+Use the existing v2 data model worksheet to ask whether the delivery-delay
+packet/report and the IDoc packet/report contain the fields needed for real
+review.
 
 ## 13. Claim Boundary
 
@@ -559,11 +637,15 @@ It does not claim RAG is unnecessary for all enterprise use cases.
 
 It does not claim `FragmentSourceProvider` proves production ingestion.
 
+It does not claim the second IDoc workflow proves real IDoc correctness.
+
 It only records the current strongest supported interpretation:
 
 ```text
 EKOS has advanced from hand-authored decision packet demos toward a narrow,
-configurable, provenance-aware decision-packet onboarding platform. The next
-frontier is proving that real or realistic SAP ingestion outputs and a second
-workflow can use the same configured layer without bespoke engine logic.
+configurable, provenance-aware decision-packet onboarding platform. The second
+configured workflow reduces delivery-delay overfit risk, but broad workflow
+scalability remains unproven. The next frontier is proving that FragmentStore
+or RFC-row outputs and a third workflow can use the same configured layer
+without bespoke engine logic.
 ```
